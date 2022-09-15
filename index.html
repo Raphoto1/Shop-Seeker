@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css">
+    <title>:::Rafael Martinez:::ShopSeeker:::</title>
+</head>
+<body>
+    <!-- modal para Nombre -->
+    <div class="modal" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Hi, what´s your name?</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p>Modal body text goes here.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+    </div>
+    <!-- barar de busqueda -->
+    <div id="searchBar" class="searchBar p-3 center">
+        <form class="row justify-content-around" action="submit" id="filters">
+            <div class="col-5 py-1">
+                <select class="form-select" aria-label="Default select example">
+                    <option value="0" selected>All Shops</option>
+                    <option value="1">Shop One</option>
+                    <option value="2">Shop Two</option>
+                    <option value="3">Shop Three</option>
+                </select>
+            </div>
+            <div class="col-5 py-1">
+                <select class="form-select" aria-label="Default select example">
+                    <option value="0" selected>All Styles</option>
+                    <option value="1">Digital</option>
+                    <option value="2">Traditional</option>
+                    <option value="3">Photography</option>
+                </select>
+            </div>
+            <div class="col-1 py-1">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </form>
+    </div>
+    <!--  mostrar diseños -->
+    <div id="designCards" class="container-fluid">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card h-100">
+                    <img src="/assets/Img/Flamingo.jpg" alt="Design#" class="card-img-top designImage">
+                    <div class="card-Body">
+                        <h5 class="card-title">Design Name</h5>
+                        <p class="card-text">bla bla bla</p>
+                        <p class="card-text">Styles</p>
+                        <a href="#" class="btn">shop Logo1</a>
+                        <a href="#" class="btn">shop Logo2</a>
+                        <a href="#" class="btn">shop Logo3</a>
+                        <a href="#" class="btn">shop Logo4</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="/assets/Img/Flamingo.jpg" alt="Design#" class="card-img-top designImage">
+                    <div class="card-Body">
+                        <h5 class="card-title">Design Name</h5>
+                        <p class="card-text">style and bla</p>
+                        <a href="#" class="btn">shop Logo</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="/assets/Img/Flamingo.jpg" alt="Design#" class="card-img-top designImage">
+                    <div class="card-Body">
+                        <h5 class="card-title">Design Name</h5>
+                        <p class="card-text">style and bla</p>
+                        <a href="#" class="btn">shop Logo</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="/assets/Img/Flamingo.jpg" alt="Design#" class="card-img-top designImage">
+                    <div class="card-Body">
+                        <h5 class="card-title">Design Name</h5>
+                        <p class="card-text">style and bla</p>
+                        <a href="#" class="btn">shop Logo</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="/assets/Img/Flamingo.jpg" alt="Design#" class="card-img-top designImage">
+                    <div class="card-Body">
+                        <h5 class="card-title">Design Name</h5>
+                        <p class="card-text">style and bla</p>
+                        <a href="#" class="btn">shop Logo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/Script/main.js"></script>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+</body>
+</html>
