@@ -1,3 +1,4 @@
+//general deploy
 let designs = [];
 let likedList= [];
 
@@ -12,6 +13,7 @@ class Design{
         this.shop2 = shop2;
         this.shop3 = shop3;
     }
+
     deployDesigns(){
         const card =`
         <div class="col">
@@ -21,7 +23,7 @@ class Design{
                         <h5 class="card-title">${this.title}</h5>
                         <p class="card-text">${this.text}</p>
                         <p class="card-text">${this.style}</p>
-                        <a href="#" id=${this.id} class="btn btn-primary">add to List</a>
+                        <a href="#" id=add${this.id} class="btn btn-primary">add to List</a>
                         <div id="shopList${this.id}">
                         </div>
                     </div>
@@ -37,16 +39,28 @@ class Design{
         let shop2Ava = checkShops(this.shop2);
         let shop3Ava = checkShops(this.shop3);
         const shops =`
-        ${shop1Ava}
-        ${shop2Ava}
-        ${shop3Ava}
+            ${shop1Ava}
+            ${shop2Ava}
+            ${shop3Ava}
         `
         const shopList = document.getElementById(`shopList${this.id}`);
         shopList.innerHTML += shops;
     }
 }
 
-let design1 = new Design(`001`,`"/assets/Img/Flamingo.jpg"`,`Flamingo`,`love flamingos`,`Digital`,`redbubble.com`,`society6.com`,``);
+function checkShops(shop){
+    let link;
+    if(shop !== ""){
+        link =`
+        <a href="${shop}" class="btn">shop cargada ${shop}</a>
+        `
+    }else{
+        link = ``;
+    }
+    return link;
+}
+
+let design1 = new Design(`001`,`"/assets/Img/Flamingo.jpg"`,`Flamingo`,`love flamingos`,`Traditional`,`redbubble.com`,`society6.com`,``);
 let design2 = new Design(`002`,`"/assets/Img/Flamingo.jpg"`,`Flamingo`,`love flamingos`,`Digital`,`redbubble.com`,``,`displate.com`);
 let design3 = new Design(`003`,`"/assets/Img/Flamingo.jpg"`,`Flamingo`,`love flamingos`,`Digital`,``,`society6.com`,``);
 
@@ -57,15 +71,23 @@ designs.forEach(e => {
     e.deployShops();
 });
 
-function checkShops(shop){
-    let link;
-    if(shop !== ""){
-        console.log(`en check ${shop}`);
-        link =`
-        <a href="${shop}" class="btn">shop cargada ${shop}</a>
-        `
-    }else{
-        link = ``;
-    }
-    return link;
+//agregamos filtros
+
+//formulario de busqueda
+//Traer Dom
+let filteringShop = document.getElementById(`shopSelect`);
+let filteringStyle = document.getElementById(`styleSelect`);
+//trabajar DOM
+filteringShop.onchange = () =>{
+    alert(`cambio a opcion ${filteringShop.value}`);
 }
+filteringStyle.onchange = () =>{
+    alert(`cambio style ${filteringStyle.value}`);
+}
+//filtros de array por shop
+
+function filterShop(){
+    const result = designs.filter(designs => Design.style == Digital)
+    console.log(result);
+}
+filtershop();
