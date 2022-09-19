@@ -68,6 +68,8 @@ function loadCards(fil) {
 }
 
 function rebuildGroupCards(){
+    const cardsRemove = document.getElementById("groupCards");
+    cardsRemove.remove()
     const cardHolder =`
     <div id="groupCards" class="row row-cols-1 row-cols-md-4 g-4">
     </div>
@@ -76,13 +78,29 @@ function rebuildGroupCards(){
         groupCards.innerHTML += cardHolder;  
 }
 
+function filtrarGeneralStyle(elemento){
+    let eFiltrado = designs.filter(e => e.style == `${elemento}`);
+    return eFiltrado;
+}
+
+function filtrarGeneralShop1(elemento){
+    let eFiltrado = designs.filter(e => e.shop1 !== `${elemento}`);
+    return eFiltrado;
+}
+function filtrarGeneralShop2(elemento){
+    let eFiltrado = designs.filter(e => e.shop2 !== `${elemento}`);
+    return eFiltrado;
+}
+function filtrarGeneralShop3(elemento){
+    let eFiltrado = designs.filter(e => e.shop3 !== `${elemento}`);
+    return eFiltrado;
+}
+
 let design1 = new Design(`001`,`"/assets/Img/Flamingo.jpg"`,`Flamingo`,`love flamingos`,`Traditional`,`redbubble.com`,`society6.com`,``);
 let design2 = new Design(`002`,`"/assets/Img/Flamingo.jpg"`,`Flamingo`,`love flamingos`,`Digital`,`redbubble.com`,``,`displate.com`);
 let design3 = new Design(`003`,`"/assets/Img/Flamingo.jpg"`,`Flamingo`,`love flamingos`,`Digital`,``,`society6.com`,``);
 
 designs.push(design1,design2,design3);
-
-//agregamos filtros
 
 //formulario de busqueda
 //Traer Dom
@@ -90,21 +108,23 @@ let filteringShop = document.getElementById(`shopSelect`);
 let filteringStyle = document.getElementById(`styleSelect`);
 //trabajar DOM
 filteringShop.onchange = () =>{
-    console.log(`cambio a opcion ${filteringShop.value}`);
     const selectedShop = filteringShop.value;
-    console.log(selectedShop);
     switch (selectedShop) {
         case "0":
-            console.log(`selecciono all${selectedShop}`);
+            rebuildGroupCards();
+            loadCards(designs);
             break;
         case "1":
-            console.log(`selecciono shop1${selectedShop}`);
+            rebuildGroupCards();
+            loadCards(filteredShopsRed);
             break;
         case "2":
-            console.log(`selecciono shop2${selectedShop}`);
+            rebuildGroupCards();
+            loadCards(filteredShopsSoc);
             break;
         case "3":
-            console.log(`selecciono shop3${selectedShop}`);
+            rebuildGroupCards();
+            loadCards(filteredShopsDis);
             break;
         default:
             console.log(`selecciono default${selectedShop}`);
@@ -112,56 +132,41 @@ filteringShop.onchange = () =>{
     }
     
 }
-// let selectedShop = filteringShop.value;
 
 filteringStyle.onchange = () =>{
     const selectedStyle = filteringStyle.value;
     switch (selectedStyle) {
         case "0":
-            console.log(`selecciono all${selectedStyle}`);
+            rebuildGroupCards();
+            loadCards(designs);
             break;
         case "1":
-            const cardsRemove = document.getElementById("groupCards")
-            cardsRemove.remove()
             rebuildGroupCards();
-            loadCards(filteredStyles);
+            loadCards(filteredByStyleDigital);
             break;
         case "2":
-            console.log(`selecciono Traditional${selectedStyle}`);
-            loadCards(filteredStyles);
+            rebuildGroupCards();
+            loadCards(filteredByStyleTraditional);
             break;
         case "3":
-            console.log(`selecciono Photography${selectedStyle}`);
+            rebuildGroupCards();
+            loadCards(filteredByStylePhoto);
             break;
         default:
             console.log(`selecciono default${selectedStyle}`);
             break;
     }
 }
-//filtros de array por shop
-let filteredShops = designs.filter(e => e.shop == "redBubble");
-console.log(filteredShops);
-console.log(designs);
-//Aqui funciona, se unifica una funcion para filtrar stilos
-function filtrarGeneralStyle(elemento){
-    let eFiltrado = designs.filter(e => e.style == `${elemento}`);
-    return eFiltrado;
-}
-let test = filtrarGeneralStyle("Traditional");
-//test2
-function filtrarGeneral(espacio,elemento){
-    espacioInner = espacio
-    let eFiltrado = designs.filter(e => e.espacioInner == `${elemento}`);
-    return eFiltrado;
-}
-let test2 = filtrarGeneral(style,"Digital");
-console.log(test2);
 
+//filtros de array por shop
+let filteredShopsRed = filtrarGeneralShop1("");
+let filteredShopsSoc = filtrarGeneralShop2("");
+let filteredShopsDis = filtrarGeneralShop3("");
 //filtros array por style
-let filteredStyles = designs.filter(e => e.style == "Digital");
-// console.log(filteredStyles);
+let filteredByStyleDigital = filtrarGeneralStyle("Digital");
+let filteredByStyleTraditional = filtrarGeneralStyle("Traditional");
+let filteredByStylePhoto = filtrarGeneralStyle("Photo");
 
 //funcion cargar
-
 
 loadCards(designs);
