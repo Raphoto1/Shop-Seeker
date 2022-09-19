@@ -16,7 +16,7 @@ class Design{
 
     deployDesigns(){
         const card =`
-        <div class="col">
+        <div id="card" class="col">
                 <div class="card h-100">
                     <img src=${this.photo} class="card-img-top designImage">
                     <div class="card-Body">
@@ -59,17 +59,28 @@ function checkShops(shop){
     }
     return link;
 }
+//agregar guardado en memoria para que cargue la sesion anterior PENDIENTE
+function loadCards(fil) {
+    fil.forEach(e => {
+        e.deployDesigns();
+        e.deployShops();
+    });
+}
+
+function rebuildGroupCards(){
+    const cardHolder =`
+    <div id="groupCards" class="row row-cols-1 row-cols-md-4 g-4">
+    </div>
+        `
+        const groupCards = document.getElementById (`designCards`);
+        groupCards.innerHTML += cardHolder;  
+}
 
 let design1 = new Design(`001`,`"/assets/Img/Flamingo.jpg"`,`Flamingo`,`love flamingos`,`Traditional`,`redbubble.com`,`society6.com`,``);
 let design2 = new Design(`002`,`"/assets/Img/Flamingo.jpg"`,`Flamingo`,`love flamingos`,`Digital`,`redbubble.com`,``,`displate.com`);
 let design3 = new Design(`003`,`"/assets/Img/Flamingo.jpg"`,`Flamingo`,`love flamingos`,`Digital`,``,`society6.com`,``);
 
 designs.push(design1,design2,design3);
-
-designs.forEach(e => {
-    e.deployDesigns();
-    e.deployShops();
-});
 
 //agregamos filtros
 
@@ -79,15 +90,64 @@ let filteringShop = document.getElementById(`shopSelect`);
 let filteringStyle = document.getElementById(`styleSelect`);
 //trabajar DOM
 filteringShop.onchange = () =>{
-    alert(`cambio a opcion ${filteringShop.value}`);
+    console.log(`cambio a opcion ${filteringShop.value}`);
+    const selectedShop = filteringShop.value;
+    console.log(selectedShop);
+    switch (selectedShop) {
+        case "0":
+            console.log(`selecciono all${selectedShop}`);
+            break;
+        case "1":
+            console.log(`selecciono shop1${selectedShop}`);
+            break;
+        case "2":
+            console.log(`selecciono shop2${selectedShop}`);
+            break;
+        case "3":
+            console.log(`selecciono shop3${selectedShop}`);
+            break;
+        default:
+            console.log(`selecciono default${selectedShop}`);
+            break;
+    }
+    
 }
+// let selectedShop = filteringShop.value;
+
 filteringStyle.onchange = () =>{
-    alert(`cambio style ${filteringStyle.value}`);
+    const selectedStyle = filteringStyle.value;
+    switch (selectedStyle) {
+        case "0":
+            console.log(`selecciono all${selectedStyle}`);
+            break;
+        case "1":
+            const cardsRemove = document.getElementById("groupCards")
+            cardsRemove.remove()
+            rebuildGroupCards();
+            loadCards(filteredStyles);
+            break;
+        case "2":
+            console.log(`selecciono Traditional${selectedStyle}`);
+            loadCards(filteredStyles);
+            break;
+        case "3":
+            console.log(`selecciono Photography${selectedStyle}`);
+            break;
+        default:
+            console.log(`selecciono default${selectedStyle}`);
+            break;
+    }
 }
 //filtros de array por shop
+let filteredShops = designs.filter(e => e.shop == "redBubble");
+console.log(filteredShops);
+console.log(designs);
 
-function filterShop(){
-    const result = designs.filter(designs => Design.style == Digital)
-    console.log(result);
-}
-filtershop();
+//filtros array por style
+let filteredStyles = designs.filter(e => e.style == "Digital");
+console.log(filteredStyles);
+
+//funcion cargar
+
+
+loadCards(designs);
