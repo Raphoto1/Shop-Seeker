@@ -142,10 +142,24 @@ filteringStyle.onchange = () =>{
 let filteredShops = designs.filter(e => e.shop == "redBubble");
 console.log(filteredShops);
 console.log(designs);
+//Aqui funciona, se unifica una funcion para filtrar stilos
+function filtrarGeneralStyle(elemento){
+    let eFiltrado = designs.filter(e => e.style == `${elemento}`);
+    return eFiltrado;
+}
+let test = filtrarGeneralStyle("Traditional");
+//test2
+function filtrarGeneral(espacio,elemento){
+    espacioInner = espacio
+    let eFiltrado = designs.filter(e => e.espacioInner == `${elemento}`);
+    return eFiltrado;
+}
+let test2 = filtrarGeneral(style,"Digital");
+console.log(test2);
 
 //filtros array por style
 let filteredStyles = designs.filter(e => e.style == "Digital");
-console.log(filteredStyles);
+// console.log(filteredStyles);
 
 //funcion cargar
 
