@@ -23,7 +23,7 @@ class Design{
                         <h5 class="card-title">${this.title}</h5>
                         <p class="card-text">${this.text}</p>
                         <p class="card-text">${this.style}</p>
-                        <a href="#" id=add${this.id} class="btn btn-primary">add to List</a>
+                        <button id="add${this.id}" class="btn btn-primary">add to List</button>
                         <div id="shopList${this.id}">
                         </div>
                     </div>
@@ -46,7 +46,22 @@ class Design{
         const shopList = document.getElementById(`shopList${this.id}`);
         shopList.innerHTML += shops;
     }
+
 }
+
+let design1 = new Design(`001`,`"/assets/Img/Flamingo.jpg"`,`Flamingo`,`love flamingos`,`Traditional`,`redbubble.com`,`society6.com`,``);
+let design2 = new Design(`002`,`"/assets/Img/Flamingo.jpg"`,`Flamingo`,`love flamingos`,`Digital`,`redbubble.com`,``,`displate.com`);
+let design3 = new Design(`003`,`"/assets/Img/Flamingo.jpg"`,`Flamingo`,`love flamingos`,`Digital`,``,`society6.com`,``);
+
+designs.push(design1,design2,design3);
+
+function lampara(){
+    alert("me agarraron")
+}
+
+
+let listNumber = document.getElementById(`listDesign`);
+listNumber.innerHTML = likedList.reduce((pNum, des) => pNum + des.amount, 0)
 
 function checkShops(shop){
     let link;
@@ -65,6 +80,7 @@ function loadCards(fil) {
         e.deployDesigns();
         e.deployShops();
     });
+    loadAddButtons(fil);
 }
 
 function rebuildGroupCards(){
@@ -87,25 +103,52 @@ function filtrarGeneralShop1(elemento){
     let eFiltrado = designs.filter(e => e.shop1 !== `${elemento}`);
     return eFiltrado;
 }
+
 function filtrarGeneralShop2(elemento){
     let eFiltrado = designs.filter(e => e.shop2 !== `${elemento}`);
     return eFiltrado;
 }
+
 function filtrarGeneralShop3(elemento){
     let eFiltrado = designs.filter(e => e.shop3 !== `${elemento}`);
     return eFiltrado;
 }
 
-let design1 = new Design(`001`,`"/assets/Img/Flamingo.jpg"`,`Flamingo`,`love flamingos`,`Traditional`,`redbubble.com`,`society6.com`,``);
-let design2 = new Design(`002`,`"/assets/Img/Flamingo.jpg"`,`Flamingo`,`love flamingos`,`Digital`,`redbubble.com`,``,`displate.com`);
-let design3 = new Design(`003`,`"/assets/Img/Flamingo.jpg"`,`Flamingo`,`love flamingos`,`Digital`,``,`society6.com`,``);
+function loadAddButtons(arr){
+    arr.forEach((des)=>{
+    const btn = document.getElementById(`add${des.id}`)
+    btn.addEventListener(`click`,()=>{
+        addToList(des.id);
+    })
+})
+}
 
-designs.push(design1,design2,design3);
+// const addToList = (desId)=>{
+//     const inList = designs.find((desi) => desi.id === desId);
+//     likedList.push(inList);
+// }
+
+const addToList = (desId)=>{
+    const inList = designs.find((desi) => desi.id === desId);
+    if(!inList){
+        likedList.push({...desId, cantidad: 1})
+    }else{
+        let filteredList = likedList.filter(des => des.id != desId.id)
+        likedList =[
+            ...filteredList,
+            {...inList, cantidad: inList.cantidad ++}
+        ]
+        console.log(likedList);
+    }
+    listNumber.innerHTML = likedList.reduce((pNum, des)=> pNum + des.cantidad, 0)
+}
+
 
 //formulario de busqueda
 //Traer Dom
 let filteringShop = document.getElementById(`shopSelect`);
 let filteringStyle = document.getElementById(`styleSelect`);
+let btnCheckList = document.getElementById(`listDesign`);
 //trabajar DOM
 filteringShop.onchange = () =>{
     const selectedShop = filteringShop.value;
@@ -158,6 +201,9 @@ filteringStyle.onchange = () =>{
     }
 }
 
+btnCheckList.onclick = () =>{
+    alert("aqui estoy boton");
+}
 //filtros de array por shop
 let filteredShopsRed = filtrarGeneralShop1("");
 let filteredShopsSoc = filtrarGeneralShop2("");

@@ -10,28 +10,30 @@
     <title>:::Rafael Martinez:::ShopSeeker:::</title>
 </head>
 <body>
-    <!-- modal para Nombre -->
-    <div class="modal" tabindex="1">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Hi, what´s your name?</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <p>Modal body text goes here.</p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-          </div>
+   <!-- Modal a futuro-->
+<div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
     </div>
+  </div>
     <!-- barar de busqueda -->
-    <div id="searchBar" class="searchBar p-3 sticky-md-top d-flex">
-        <form class="row justify-content-around d-flex" id="filters">
-            <div class="col-5">
+    <div id="searchBar" class="searchBar p-3 sticky-md-top w-100">
+        <form class="row justify-content-around w-100" id="filters">
+            <div class="col-4">
                 <select id="shopSelect" class="form-select shopSelect" aria-label="Default select example">
                     <option value="0" selected>All Shops</option>
                     <option value="1">Shop One</option>
@@ -39,7 +41,7 @@
                     <option value="3">Shop Three</option>
                 </select>
             </div>
-            <div class="col-5">
+            <div class="col-4">
                 <select id="styleSelect" class="form-select stylesSelect" aria-label="Default select example">
                     <option value="0" selected>All Styles</option>
                     <option value="1">Digital</option>
@@ -47,10 +49,10 @@
                     <option value="3">Photography</option>
                 </select>
             </div>
-        </form>
             <div class="col-2">
-                <button type="submit" class="btn btn-primary">Check List</button>
+                <button type="button" id="listDesign" class="btn btn-primary" data-toggle="modal" data-target="#modalInfo">Check List</button>
             </div>
+        </form>
     </div>
     <!--  mostrar diseños -->
     <div id="designCards" class="container-fluid">
