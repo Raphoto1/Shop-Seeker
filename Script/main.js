@@ -60,8 +60,9 @@ function lampara(){
 }
 
 
-let listNumber = document.getElementById(`listDesign`);
-listNumber.innerHTML = likedList.reduce((pNum, des) => pNum + des.amount, 0)
+function addCounterNum(){
+    btnCheckList.innerHTML = `Check List (${countDesigns})`
+}
 
 function checkShops(shop){
     let link;
@@ -81,6 +82,7 @@ function loadCards(fil) {
         e.deployShops();
     });
     loadAddButtons(fil);
+    
 }
 
 function rebuildGroupCards(){
@@ -123,32 +125,27 @@ function loadAddButtons(arr){
 })
 }
 
-// const addToList = (desId)=>{
-//     const inList = designs.find((desi) => desi.id === desId);
-//     likedList.push(inList);
-// }
-
 const addToList = (desId)=>{
-    const inList = designs.find((desi) => desi.id === desId);
-    if(!inList){
-        likedList.push({...desId, cantidad: 1})
+    const findForList = designs.find((desi) => desi.id === desId);
+    const checkList = likedList.find((desi) => desi.id === desId);
+    
+    if(findForList == checkList){
+        alert(`${findForList.title} has been already added to your list`)
     }else{
-        let filteredList = likedList.filter(des => des.id != desId.id)
-        likedList =[
-            ...filteredList,
-            {...inList, cantidad: inList.cantidad ++}
-        ]
-        console.log(likedList);
+       likedList.push(findForList); 
+       countDesigns++;
+       addCounterNum();
     }
-    listNumber.innerHTML = likedList.reduce((pNum, des)=> pNum + des.cantidad, 0)
+    
 }
 
-
+let countDesigns = 0;
 //formulario de busqueda
 //Traer Dom
 let filteringShop = document.getElementById(`shopSelect`);
 let filteringStyle = document.getElementById(`styleSelect`);
 let btnCheckList = document.getElementById(`listDesign`);
+
 //trabajar DOM
 filteringShop.onchange = () =>{
     const selectedShop = filteringShop.value;
@@ -202,7 +199,8 @@ filteringStyle.onchange = () =>{
 }
 
 btnCheckList.onclick = () =>{
-    alert("aqui estoy boton");
+    rebuildGroupCards();
+    loadCards(likedList);
 }
 //filtros de array por shop
 let filteredShopsRed = filtrarGeneralShop1("");
