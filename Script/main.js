@@ -95,23 +95,17 @@ function rebuildGroupCards(){
         groupCards.innerHTML += cardHolder;  
 }
 
-function filtrarGeneralStyle(elemento){
-    let eFiltrado = designs.filter(e => e.style == `${elemento}`);
+//duda sobre funciones de filtrado
+
+function filtrarGeneral(elemento,item){
+    let eFiltrado = designs.filter(e => e[item] == `${elemento}`);
     return eFiltrado;
 }
 
-function filtrarGeneralShop1(elemento){
-    let eFiltrado = designs.filter(e => e.shop1 !== `${elemento}`);
-    return eFiltrado;
-}
+//COPIA ARRIBA CON EL INTENTO DE FUNCION CON DOS 
 
-function filtrarGeneralShop2(elemento){
-    let eFiltrado = designs.filter(e => e.shop2 !== `${elemento}`);
-    return eFiltrado;
-}
-
-function filtrarGeneralShop3(elemento){
-    let eFiltrado = designs.filter(e => e.shop3 !== `${elemento}`);
+function filtrarGeneralShop(elemento,item){
+    let eFiltrado = designs.filter(e => e[item] !== `${elemento}`);
     return eFiltrado;
 }
 
@@ -202,13 +196,13 @@ btnCheckList.onclick = () =>{
     loadCards(likedList);
 }
 //filtros de array por shop
-let filteredShopsRed = filtrarGeneralShop1("");
-let filteredShopsSoc = filtrarGeneralShop2("");
-let filteredShopsDis = filtrarGeneralShop3("");
+let filteredShopsRed = filtrarGeneralShop("","shop1");
+let filteredShopsSoc = filtrarGeneralShop("","shop2");
+let filteredShopsDis = filtrarGeneralShop("","shop3");
 //filtros array por style
-let filteredByStyleDigital = filtrarGeneralStyle("Digital");
-let filteredByStyleTraditional = filtrarGeneralStyle("Traditional");
-let filteredByStylePhoto = filtrarGeneralStyle("Photo");
+let filteredByStyleDigital = filtrarGeneral("Digital","style");
+let filteredByStyleTraditional = filtrarGeneral("Traditional","style");
+let filteredByStylePhoto = filtrarGeneral("Photo","style");
 
 //funcion cargar
 let memoryBack =  JSON.parse(localStorage.getItem("design"))
