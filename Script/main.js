@@ -12,6 +12,8 @@ class Design{
         this.shop1 = shop1;
         this.shop2 = shop2;
         this.shop3 = shop3;
+        // this.deployDesigns();
+
     }
 
     deployDesigns(){
@@ -55,10 +57,16 @@ let design3 = new Design(`003`,`"/assets/Img/Flamingo.jpg"`,`Flamingo`,`love fla
 
 designs.push(design1,design2,design3);
 
-function lampara(){
-    alert("me agarraron")
+//agregar guardado en memoria para que cargue la sesion anterior PENDIENTE
+function loadCards(fil) {
+    fil.forEach(e => {
+        console.log(e);
+        e.deployDesigns();
+        e.deployShops();
+    });
+    loadAddButtons(fil);
+    saveMem(fil);
 }
-
 
 function addCounterNum(){
     btnCheckList.innerHTML = `Check List (${countDesigns})`
@@ -74,15 +82,6 @@ function checkShops(shop){
         link = ``;
     }
     return link;
-}
-//agregar guardado en memoria para que cargue la sesion anterior PENDIENTE
-function loadCards(fil) {
-    fil.forEach(e => {
-        e.deployDesigns();
-        e.deployShops();
-    });
-    loadAddButtons(fil);
-    
 }
 
 function rebuildGroupCards(){
@@ -212,5 +211,26 @@ let filteredByStyleTraditional = filtrarGeneralStyle("Traditional");
 let filteredByStylePhoto = filtrarGeneralStyle("Photo");
 
 //funcion cargar
+let memoryBack =  JSON.parse(localStorage.getItem("design"))
+console.log(memoryBack);
+// saveMem(designs);
+// console.log(designs);
+function saveMem(arr){
+    localStorage.setItem("design",JSON.stringify(arr));
+}
 
-loadCards(designs);
+function firstLoad(){
+    
+    if(memoryBack !== null){
+        console.log("estoy en recuerdo")
+        loadCards(memoryBack);
+    }else{
+        loadCards(designs);
+        console.log("estoy en primera vez");
+    }
+}
+//CARGAS DE INICIO
+
+// firstLoad();
+loadCards(memoryBack);
+// loadCards(designs);
