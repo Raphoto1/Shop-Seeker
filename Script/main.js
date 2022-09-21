@@ -12,8 +12,6 @@ class Design{
         this.shop1 = shop1;
         this.shop2 = shop2;
         this.shop3 = shop3;
-        // this.deployDesigns();
-
     }
 
     deployDesigns(){
@@ -60,7 +58,6 @@ designs.push(design1,design2,design3);
 //agregar guardado en memoria para que cargue la sesion anterior PENDIENTE
 function loadCards(fil) {
     fil.forEach(e => {
-        console.log(e);
         e.deployDesigns();
         e.deployShops();
     });
@@ -95,14 +92,11 @@ function rebuildGroupCards(){
         groupCards.innerHTML += cardHolder;  
 }
 
-//duda sobre funciones de filtrado
 
 function filtrarGeneral(elemento,item){
     let eFiltrado = designs.filter(e => e[item] == `${elemento}`);
     return eFiltrado;
 }
-
-//COPIA ARRIBA CON EL INTENTO DE FUNCION CON DOS 
 
 function filtrarGeneralShop(elemento,item){
     let eFiltrado = designs.filter(e => e[item] !== `${elemento}`);
@@ -204,14 +198,14 @@ let filteredByStyleDigital = filtrarGeneral("Digital","style");
 let filteredByStyleTraditional = filtrarGeneral("Traditional","style");
 let filteredByStylePhoto = filtrarGeneral("Photo","style");
 
-//funcion cargar
-let memoryBack =  JSON.parse(localStorage.getItem("design"))
-console.log(memoryBack);
-// saveMem(designs);
-// console.log(designs);
+//funcion cargar TRABAJO EN LOCALSTORAGE
 function saveMem(arr){
-    localStorage.setItem("design",JSON.stringify(arr));
+    console.log(arr);
+    localStorage.setItem("Design",JSON.stringify(arr));
 }
+
+let memoryBack =  JSON.parse(localStorage.getItem("Design"))
+console.log(memoryBack);
 
 function firstLoad(){
     
@@ -225,6 +219,6 @@ function firstLoad(){
 }
 //CARGAS DE INICIO
 
-// firstLoad();
-loadCards(memoryBack);
+firstLoad();
+// loadCards(memoryBack);
 // loadCards(designs);
