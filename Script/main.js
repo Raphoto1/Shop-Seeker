@@ -14,38 +14,9 @@ class Design{
         this.shop3 = shop3;
     }
 
-    deployDesigns(){
-        const card =`
-        <div id="card" class="col">
-                <div class="card h-100">
-                    <img src=${this.photo} class="card-img-top designImage">
-                    <div class="card-Body">
-                        <h5 class="card-title">${this.title}</h5>
-                        <p class="card-text">${this.text}</p>
-                        <p class="card-text">${this.style}</p>
-                        <button id="add${this.id}" class="btn btn-primary">add to List</button>
-                        <div id="shopList${this.id}">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `
-        const groupCards = document.getElementById (`groupCards`);
-        groupCards.innerHTML += card;  
-    }
     
-    deployShops(){
-        let shop1Ava = checkShops(this.shop1);
-        let shop2Ava = checkShops(this.shop2);
-        let shop3Ava = checkShops(this.shop3);
-        const shops =`
-            ${shop1Ava}
-            ${shop2Ava}
-            ${shop3Ava}
-        `
-        const shopList = document.getElementById(`shopList${this.id}`);
-        shopList.innerHTML += shops;
-    }
+    
+    
 
 }
 
@@ -58,8 +29,8 @@ designs.push(design1,design2,design3);
 //agregar guardado en memoria para que cargue la sesion anterior PENDIENTE
 function loadCards(fil) {
     fil.forEach(e => {
-        e.deployDesigns();
-        e.deployShops();
+        deployDesigns(e);
+        deployShops(e);
     });
     loadAddButtons(fil);
     saveMem(fil);
@@ -101,6 +72,39 @@ function filtrarGeneral(elemento,item){
 function filtrarGeneralShop(elemento,item){
     let eFiltrado = designs.filter(e => e[item] !== `${elemento}`);
     return eFiltrado;
+}
+
+function deployShops(fil){
+    let shop1Ava = checkShops(fil.shop1);
+    let shop2Ava = checkShops(fil.shop2);
+    let shop3Ava = checkShops(fil.shop3);
+    const shops =`
+        ${shop1Ava}
+        ${shop2Ava}
+        ${shop3Ava}
+    `
+    const shopList = document.getElementById(`shopList${fil.id}`);
+    shopList.innerHTML += shops;
+}
+
+function deployDesigns(fil){
+    const card =`
+    <div id="card" class="col">
+            <div class="card h-100">
+                <img src=${fil.photo} class="card-img-top designImage">
+                <div class="card-Body">
+                    <h5 class="card-title">${fil.title}</h5>
+                    <p class="card-text">${fil.text}</p>
+                    <p class="card-text">${fil.style}</p>
+                    <button id="add${fil.id}" class="btn btn-primary">add to List</button>
+                    <div id="shopList${fil.id}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    `
+    const groupCards = document.getElementById (`groupCards`);
+    groupCards.innerHTML += card;  
 }
 
 function loadAddButtons(arr){
