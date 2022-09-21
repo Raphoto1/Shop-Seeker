@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="/styles/main.css">
     <title>:::Rafael Martinez:::ShopSeeker:::</title>
 </head>
 <body>
    <!-- Modal a futuro-->
-<div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal" id="info" tabindex="-1" role="dialog" aria-labelledby="info" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -30,6 +30,7 @@
       </div>
     </div>
   </div>
+
     <!-- barar de busqueda -->
     <div id="searchBar" class="searchBar p-3 sticky-md-top w-100">
         <form class="row justify-content-around w-100" id="filters">
@@ -49,8 +50,9 @@
                     <option value="3">Photography</option>
                 </select>
             </div>
-            <div class="col-2">
+            <div class="col-4">
                 <button type="button" id="listDesign" class="btn btn-primary" data-toggle="modal" data-target="#modalInfo">Check List</button>
+                <button type="button" id="listDesignClear" class="btn btn-secondary" data-toggle="modal" data-target="#modalInfo">Clear list</button>
             </div>
         </form>
     </div>

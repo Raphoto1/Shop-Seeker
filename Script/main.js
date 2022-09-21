@@ -1,4 +1,4 @@
-//general deploy
+//general Array deploy
 let designs = [];
 let likedList= [];
 
@@ -13,20 +13,20 @@ class Design{
         this.shop2 = shop2;
         this.shop3 = shop3;
     }
-
-    
-    
-    
-
 }
 
 let design1 = new Design(`001`,`"/assets/Img/Flamingo.jpg"`,`Flamingo`,`love flamingos`,`Traditional`,`redbubble.com`,`society6.com`,``);
-let design2 = new Design(`002`,`"/assets/Img/Flamingo.jpg"`,`Flamingo`,`love flamingos`,`Digital`,`redbubble.com`,``,`displate.com`);
-let design3 = new Design(`003`,`"/assets/Img/Flamingo.jpg"`,`Flamingo`,`love flamingos`,`Digital`,``,`society6.com`,``);
+let design2 = new Design(`002`,`"/assets/Img/Flamingo.jpg"`,`Bird`,`love Birds`,`Digital`,`redbubble.com`,``,`displate.com`);
+let design3 = new Design(`003`,`"/assets/Img/Flamingo.jpg"`,`Dragon`,`love Dragons`,`Digital`,``,`society6.com`,``);
+let design4 = new Design(`004`,`"/assets/Img/Flamingo.jpg"`,`Nigth photo chia`,`love night Photography`,`Photography`,``,``,`displate.com`);
+let design5 = new Design(`005`,`"/assets/Img/Flamingo.jpg"`,`Flamingo2`,`love flamingos`,`Traditional`,`redbubble.com`,`society6.com`,``);
+let design6 = new Design(`006`,`"/assets/Img/Flamingo.jpg"`,`Bird2`,`love Birds`,`Digital`,`redbubble.com`,``,`displate.com`);
+let design7 = new Design(`007`,`"/assets/Img/Flamingo.jpg"`,`Dragon2`,`love Dragons`,`Digital`,``,`society6.com`,``);
+let design8 = new Design(`008`,`"/assets/Img/Flamingo.jpg"`,`Nigth photo chia2`,`love night Photography`,`Photography`,``,``,`displate.com`);
 
-designs.push(design1,design2,design3);
+designs.push(design1,design2,design3,design4,design5,design6,design7,design8);
 
-//agregar guardado en memoria para que cargue la sesion anterior PENDIENTE
+//funciones
 function loadCards(fil) {
     fil.forEach(e => {
         deployDesigns(e);
@@ -62,7 +62,6 @@ function rebuildGroupCards(){
         const groupCards = document.getElementById (`designCards`);
         groupCards.innerHTML += cardHolder;  
 }
-
 
 function filtrarGeneral(elemento,item){
     let eFiltrado = designs.filter(e => e[item] == `${elemento}`);
@@ -126,16 +125,49 @@ const addToList = (desId)=>{
        likedList.push(findForList); 
        countDesigns++;
        addCounterNum();
+       saveMemList(likedList);
     }
     
 }
 
+function saveMem(arr){
+    console.log(arr);
+    localStorage.setItem("Design",JSON.stringify(arr));
+}
+
+function saveMemList(arr){
+    console.log(arr);
+    localStorage.setItem("designList",JSON.stringify(arr));
+    localStorage.setItem("designListCount",JSON.stringify(countDesigns));
+}
+
+function firstLoad(){
+    //revisar memoria ultima navegacion
+    if(memoryBack !== null){
+        console.log("estoy en recuerdo")
+        loadCards(memoryBack);
+    }else{
+        loadCards(designs);
+        console.log("estoy en primera vez");
+    }
+    //revisar memoria ultima lista
+    if(memoryListBack !== null){
+        console.log("recuerdo list");
+        likedList = memoryListBack;
+        countDesigns = memoryListCountBack;
+        addCounterNum()
+    }else{
+        console.log("lista vacia");
+    }
+}
+
 let countDesigns = 0;
-//formulario de busqueda
+
 //Traer Dom
 let filteringShop = document.getElementById(`shopSelect`);
 let filteringStyle = document.getElementById(`styleSelect`);
 let btnCheckList = document.getElementById(`listDesign`);
+let btnCheckListClear = document.getElementById(`listDesignClear`);
 
 //trabajar DOM
 filteringShop.onchange = () =>{
@@ -189,10 +221,24 @@ filteringStyle.onchange = () =>{
     }
 }
 
-btnCheckList.onclick = () =>{
-    rebuildGroupCards();
-    loadCards(likedList);
+btnCheckListClear.onclick = () =>{
+    likedList = [];
+    countDesigns = 0
+    addCounterNum();
+    localStorage.removeItem("designList");
+    localStorage.removeItem("designListCount")
 }
+
+btnCheckList.onclick = () =>{
+    if(likedList == ""){
+        alert(`Please add a design to your list`)
+    }else{
+        rebuildGroupCards();
+        loadCards(likedList);
+    }
+    
+}
+
 //filtros de array por shop
 let filteredShopsRed = filtrarGeneralShop("","shop1");
 let filteredShopsSoc = filtrarGeneralShop("","shop2");
@@ -200,29 +246,14 @@ let filteredShopsDis = filtrarGeneralShop("","shop3");
 //filtros array por style
 let filteredByStyleDigital = filtrarGeneral("Digital","style");
 let filteredByStyleTraditional = filtrarGeneral("Traditional","style");
-let filteredByStylePhoto = filtrarGeneral("Photo","style");
+let filteredByStylePhoto = filtrarGeneral("Photography","style");
 
 //funcion cargar TRABAJO EN LOCALSTORAGE
-function saveMem(arr){
-    console.log(arr);
-    localStorage.setItem("Design",JSON.stringify(arr));
-}
-
-let memoryBack =  JSON.parse(localStorage.getItem("Design"))
+let memoryBack =  JSON.parse(localStorage.getItem("Design"));
+let memoryListBack = JSON.parse(localStorage.getItem("designList"));
+let memoryListCountBack = JSON.parse(localStorage.getItem("designListCount"))
 console.log(memoryBack);
 
-function firstLoad(){
-    
-    if(memoryBack !== null){
-        console.log("estoy en recuerdo")
-        loadCards(memoryBack);
-    }else{
-        loadCards(designs);
-        console.log("estoy en primera vez");
-    }
-}
 //CARGAS DE INICIO
 
 firstLoad();
-// loadCards(memoryBack);
-// loadCards(designs);

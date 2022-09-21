@@ -5,10 +5,12 @@
 }
 
 .designImage {
-  width: 100px;
+  width: 100%;
 }
 
 .searchBar {
   display: flex;
   width: 100%;
+  justify-content: center;
+  align-items: center;
 }/*# sourceMappingURL=main.css.map */
