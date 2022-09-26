@@ -123,7 +123,7 @@ const addToList = (desId)=>{
         alert(`${findForList.title} has been already added to your list`)
     }else{
        likedList.push(findForList); 
-       countDesigns++;
+       countDesigns++; //USO SUGAR PARA SUMAR
        addCounterNum();
        saveMemList(likedList);
     }
@@ -141,25 +141,45 @@ function saveMemList(arr){
     localStorage.setItem("designListCount",JSON.stringify(countDesigns));
 }
 
+//FUNCION CONVERTIDA A SUGGAR
 function firstLoad(){
-    //revisar memoria ultima navegacion
-    if(memoryBack !== null){
-        console.log("estoy en recuerdo")
-        loadCards(memoryBack);
-    }else{
-        loadCards(designs);
-        console.log("estoy en primera vez");
-    }
-    //revisar memoria ultima lista
-    if(memoryListBack !== null){
-        console.log("recuerdo list");
-        likedList = memoryListBack;
-        countDesigns = memoryListCountBack;
-        addCounterNum()
-    }else{
-        console.log("lista vacia");
-    }
+    return memoryBack !== null
+    ? loadCards(memoryBack) 
+    : loadCards(designs);
 }
+
+function loadMemoryList(){
+    likedList = memoryListBack;
+    countDesigns = memoryListCountBack;
+    addCounterNum()
+}
+
+function firstLoadList(){
+    return memoryListBack !== null
+    ? loadMemoryList() 
+    : console.log("lista vacia");
+}
+
+//funcion original PARA COMPARAR CON SUGGAR
+// function firstLoad(){
+//     //revisar memoria ultima navegacion
+//     if(memoryBack !== null){
+//         console.log("estoy en recuerdo")
+//         loadCards(memoryBack);
+//     }else{
+//         loadCards(designs);
+//         console.log("estoy en primera vez");
+//     }
+//     //revisar memoria ultima lista
+//     if(memoryListBack !== null){
+//         console.log("recuerdo list");
+//         likedList = memoryListBack;
+//         countDesigns = memoryListCountBack;
+//         addCounterNum()
+//     }else{
+//         console.log("lista vacia");
+//     }
+// }
 
 let countDesigns = 0;
 
@@ -236,7 +256,6 @@ btnCheckList.onclick = () =>{
         rebuildGroupCards();
         loadCards(likedList);
     }
-    
 }
 
 //filtros de array por shop
@@ -252,8 +271,8 @@ let filteredByStylePhoto = filtrarGeneral("Photography","style");
 let memoryBack =  JSON.parse(localStorage.getItem("Design"));
 let memoryListBack = JSON.parse(localStorage.getItem("designList"));
 let memoryListCountBack = JSON.parse(localStorage.getItem("designListCount"))
-console.log(memoryBack);
 
 //CARGAS DE INICIO
 
 firstLoad();
+firstLoadList()
