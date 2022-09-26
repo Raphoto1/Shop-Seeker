@@ -15,14 +15,14 @@ class Design{
     }
 }
 
-let design1 = new Design(`001`,`"/assets/Img/Flamingo.jpg"`,`Flamingo`,`love flamingos`,`Traditional`,`redbubble.com`,`society6.com`,``);
-let design2 = new Design(`002`,`"/assets/Img/Flamingo.jpg"`,`Bird`,`love Birds`,`Digital`,`redbubble.com`,``,`displate.com`);
-let design3 = new Design(`003`,`"/assets/Img/Flamingo.jpg"`,`Dragon`,`love Dragons`,`Digital`,``,`society6.com`,``);
-let design4 = new Design(`004`,`"/assets/Img/Flamingo.jpg"`,`Nigth photo chia`,`love night Photography`,`Photography`,``,``,`displate.com`);
-let design5 = new Design(`005`,`"/assets/Img/Flamingo.jpg"`,`Flamingo2`,`love flamingos`,`Traditional`,`redbubble.com`,`society6.com`,``);
-let design6 = new Design(`006`,`"/assets/Img/Flamingo.jpg"`,`Bird2`,`love Birds`,`Digital`,`redbubble.com`,``,`displate.com`);
-let design7 = new Design(`007`,`"/assets/Img/Flamingo.jpg"`,`Dragon2`,`love Dragons`,`Digital`,``,`society6.com`,``);
-let design8 = new Design(`008`,`"/assets/Img/Flamingo.jpg"`,`Nigth photo chia2`,`love night Photography`,`Photography`,``,``,`displate.com`);
+let design1 = new Design(`001`,`"./assets/Img/Flamingo.jpg"`,`Flamingo`,`love flamingos`,`Traditional`,`redbubble.com`,`society6.com`,``);
+let design2 = new Design(`002`,`"./assets/Img/Flamingo.jpg"`,`Bird`,`love Birds`,`Digital`,`redbubble.com`,``,`displate.com`);
+let design3 = new Design(`003`,`"./assets/Img/Flamingo.jpg"`,`Dragon`,`love Dragons`,`Digital`,``,`society6.com`,``);
+let design4 = new Design(`004`,`"./assets/Img/Flamingo.jpg"`,`Nigth photo chia`,`love night Photography`,`Photography`,``,``,`displate.com`);
+let design5 = new Design(`005`,`"./assets/Img/Flamingo.jpg"`,`Flamingo2`,`love flamingos`,`Traditional`,`redbubble.com`,`society6.com`,``);
+let design6 = new Design(`006`,`"./assets/Img/Flamingo.jpg"`,`Bird2`,`love Birds`,`Digital`,`redbubble.com`,``,`displate.com`);
+let design7 = new Design(`007`,`"./assets/Img/Flamingo.jpg"`,`Dragon2`,`love Dragons`,`Digital`,``,`society6.com`,``);
+let design8 = new Design(`008`,`"./assets/Img/Flamingo.jpg"`,`Nigth photo chia2`,`love night Photography`,`Photography`,``,``,`displate.com`);
 
 designs.push(design1,design2,design3,design4,design5,design6,design7,design8);
 
