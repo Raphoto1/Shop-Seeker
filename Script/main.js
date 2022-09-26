@@ -231,7 +231,10 @@ btnCheckListClear.onclick = () =>{
 
 btnCheckList.onclick = () =>{
     if(likedList == ""){
-        alert(`Please add a design to your list`)
+        Swal.fire({
+            text:`Please add a design to your list`,
+            icon:`warning`
+        })
     }else{
         rebuildGroupCards();
         loadCards(likedList);
