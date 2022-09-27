@@ -120,12 +120,22 @@ const addToList = (desId)=>{
     const checkList = likedList.find((desi) => desi.id === desId);
     
     if(findForList == checkList){
-        alert(`${findForList.title} has been already added to your list`)
+        Swal.fire({
+            text:`${findForList.title} has been already added to your list`,
+            icon:`warning`
+        })
     }else{
        likedList.push(findForList); 
        countDesigns++;
        addCounterNum();
        saveMemList(likedList);
+       Toastify({
+        text: `${findForList.title} Added to list`,
+        className: "info",
+        style: {
+          background: "linear-gradient(to right, #00b09b, #96c93d)",
+        }
+      }).showToast();
     }
     
 }
@@ -176,18 +186,46 @@ filteringShop.onchange = () =>{
         case "0":
             rebuildGroupCards();
             loadCards(designs);
+            Toastify({
+                text: "All Shops Loaded",
+                className: "info",
+                style: {
+                  background: "linear-gradient(to right, #00b09b, #96c93d)",
+                }
+              }).showToast();
             break;
         case "1":
             rebuildGroupCards();
             loadCards(filteredShopsRed);
+            Toastify({
+                text: "Shop1 Loaded",
+                className: "info",
+                style: {
+                  background: "linear-gradient(to right, #00b09b, #96c93d)",
+                }
+              }).showToast();
             break;
         case "2":
             rebuildGroupCards();
             loadCards(filteredShopsSoc);
+            Toastify({
+                text: "Shop2 Loaded",
+                className: "info",
+                style: {
+                  background: "linear-gradient(to right, #00b09b, #96c93d)",
+                }
+              }).showToast();
             break;
         case "3":
             rebuildGroupCards();
             loadCards(filteredShopsDis);
+            Toastify({
+                text: "Shop3 Loaded",
+                className: "info",
+                style: {
+                  background: "linear-gradient(to right, #00b09b, #96c93d)",
+                }
+              }).showToast();
             break;
         default:
             console.log(`selecciono default${selectedShop}`);
@@ -202,18 +240,46 @@ filteringStyle.onchange = () =>{
         case "0":
             rebuildGroupCards();
             loadCards(designs);
+            Toastify({
+                text: "All Styles Loaded",
+                className: "info",
+                style: {
+                  background: "linear-gradient(to right, #00b09b, #96c93d)",
+                }
+              }).showToast();
             break;
         case "1":
             rebuildGroupCards();
             loadCards(filteredByStyleDigital);
+            Toastify({
+                text: "digital loaded",
+                className: "info",
+                style: {
+                  background: "linear-gradient(to right, #00b09b, #96c93d)",
+                }
+              }).showToast();
             break;
         case "2":
             rebuildGroupCards();
             loadCards(filteredByStyleTraditional);
+            Toastify({
+                text: "Traditional Loaded",
+                className: "info",
+                style: {
+                  background: "linear-gradient(to right, #00b09b, #96c93d)",
+                }
+              }).showToast();
             break;
         case "3":
             rebuildGroupCards();
             loadCards(filteredByStylePhoto);
+            Toastify({
+                text: "Photography Loaded",
+                className: "info",
+                style: {
+                  background: "linear-gradient(to right, #00b09b, #96c93d)",
+                }
+              }).showToast();
             break;
         default:
             console.log(`selecciono default${selectedStyle}`);
@@ -226,7 +292,14 @@ btnCheckListClear.onclick = () =>{
     countDesigns = 0
     addCounterNum();
     localStorage.removeItem("designList");
-    localStorage.removeItem("designListCount")
+    localStorage.removeItem("designListCount");
+    Toastify({
+        text: "List Cleared",
+        className: "info",
+        style: {
+          background: "linear-gradient(to right, #00b09b, #96c93d)",
+        }
+      }).showToast();
 }
 
 btnCheckList.onclick = () =>{
@@ -238,6 +311,13 @@ btnCheckList.onclick = () =>{
     }else{
         rebuildGroupCards();
         loadCards(likedList);
+        Toastify({
+            text: "List loaded",
+            className: "info",
+            style: {
+              background: "linear-gradient(to right, #00b09b, #96c93d)",
+            }
+          }).showToast();
     }
     
 }
@@ -256,6 +336,9 @@ let memoryBack =  JSON.parse(localStorage.getItem("Design"));
 let memoryListBack = JSON.parse(localStorage.getItem("designList"));
 let memoryListCountBack = JSON.parse(localStorage.getItem("designListCount"))
 console.log(memoryBack);
+
+//Sweetalert
+
 
 //CARGAS DE INICIO
 
