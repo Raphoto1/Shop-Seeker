@@ -337,9 +337,6 @@ let memoryListBack = JSON.parse(localStorage.getItem("designList"));
 let memoryListCountBack = JSON.parse(localStorage.getItem("designListCount"))
 console.log(memoryBack);
 
-//Sweetalert
-
-
 //CARGAS DE INICIO
 
 firstLoad();
