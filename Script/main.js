@@ -13,6 +13,39 @@ class Design{
         this.shop2 = shop2;
         this.shop3 = shop3;
     }
+
+    deployDesigns(){
+        const card =`
+        <div id="card" class="col">
+                <div class="card h-100">
+                    <img src=${this.photo} class="card-img-top designImage">
+                    <div class="card-Body">
+                        <h5 class="card-title">${this.title}</h5>
+                        <p class="card-text">${this.text}</p>
+                        <p class="card-text">${this.style}</p>
+                        <button id="add${this.id}" class="btn btn-primary">add to List</button>
+                        <div id="shopList${this.id}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `
+        const groupCards = document.getElementById (`groupCards`);
+        groupCards.innerHTML += card;  
+    }
+
+    deployShops(){
+        let shop1Ava = checkShops(this.shop1);
+        let shop2Ava = checkShops(this.shop2);
+        let shop3Ava = checkShops(this.shop3);
+        const shops =`
+            ${shop1Ava}
+            ${shop2Ava}
+            ${shop3Ava}
+        `
+        const shopList = document.getElementById(`shopList${this.id}`);
+        shopList.innerHTML += shops;
+    }
 }
 
 let design1 = new Design(`001`,`"./assets/Img/Flamingo.jpg"`,`Flamingo`,`love flamingos`,`Traditional`,`redbubble.com`,`society6.com`,``);
@@ -25,9 +58,17 @@ let design7 = new Design(`007`,`"./assets/Img/Flamingo.jpg"`,`Dragon2`,`love Dra
 let design8 = new Design(`008`,`"./assets/Img/Flamingo.jpg"`,`Nigth photo chia2`,`love night Photography`,`Photography`,``,``,`displate.com`);
 
 designs.push(design1,design2,design3,design4,design5,design6,design7,design8);
-
 //funciones
 function loadCards(fil) {
+    fil.forEach(e => {
+        e.deployDesigns();
+        e.deployShops();
+    });
+    loadAddButtons(fil);
+    saveMem(fil);
+}
+
+function loadCardsMemory(fil) {
     fil.forEach(e => {
         deployDesigns(e);
         deployShops(e);
@@ -72,7 +113,7 @@ function filtrarGeneralShop(elemento,item){
     let eFiltrado = designs.filter(e => e[item] !== `${elemento}`);
     return eFiltrado;
 }
-
+//se pasa a class como metodo
 function deployShops(fil){
     let shop1Ava = checkShops(fil.shop1);
     let shop2Ava = checkShops(fil.shop2);
@@ -85,7 +126,7 @@ function deployShops(fil){
     const shopList = document.getElementById(`shopList${fil.id}`);
     shopList.innerHTML += shops;
 }
-
+//se pasa a class como petodo
 function deployDesigns(fil){
     const card =`
     <div id="card" class="col">
@@ -143,6 +184,8 @@ const addToList = (desId)=>{
 function saveMem(arr){
     console.log(arr);
     localStorage.setItem("Design",JSON.stringify(arr));
+    const testVuelta = JSON.parse(localStorage.getItem("Design"))
+    console.log(testVuelta);
 }
 
 function saveMemList(arr){
@@ -155,7 +198,7 @@ function firstLoad(){
     //revisar memoria ultima navegacion
     if(memoryBack !== null){
         console.log("estoy en recuerdo")
-        loadCards(memoryBack);
+        loadCardsMemory(memoryBack);
     }else{
         loadCards(designs);
         console.log("estoy en primera vez");
@@ -310,7 +353,7 @@ btnCheckList.onclick = () =>{
         })
     }else{
         rebuildGroupCards();
-        loadCards(likedList);
+        loadCardsMemory(likedList);
         Toastify({
             text: "List loaded",
             className: "info",
