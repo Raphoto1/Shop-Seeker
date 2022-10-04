@@ -2,73 +2,19 @@
 let designs = [];
 let likedList= [];
 
-class Design{
-    constructor(id,photo,title,text,style,shop1,shop2,shop3){
-        this.id = id;
-        this.photo = photo;
-        this.title = title;
-        this.text = text;
-        this.style = style;
-        this.shop1 = shop1;
-        this.shop2 = shop2;
-        this.shop3 = shop3;
-    }
-
-    deployDesigns(){
-        const card =`
-        <div id="card" class="col">
-                <div class="card h-100">
-                    <img src=${this.photo} class="card-img-top designImage">
-                    <div class="card-Body">
-                        <h5 class="card-title">${this.title}</h5>
-                        <p class="card-text">${this.text}</p>
-                        <p class="card-text">${this.style}</p>
-                        <button id="add${this.id}" class="btn btn-primary">add to List</button>
-                        <div id="shopList${this.id}">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `
-        const groupCards = document.getElementById (`groupCards`);
-        groupCards.innerHTML += card;  
-    }
-
-    deployShops(){
-        let shop1Ava = checkShops(this.shop1);
-        let shop2Ava = checkShops(this.shop2);
-        let shop3Ava = checkShops(this.shop3);
-        const shops =`
-            ${shop1Ava}
-            ${shop2Ava}
-            ${shop3Ava}
-        `
-        const shopList = document.getElementById(`shopList${this.id}`);
-        shopList.innerHTML += shops;
-    }
+async function bringInfo(){
+const infoBase = await fetch(`./Script/designs.json`)
+const infoBaseJson = await infoBase.json()
+await infoBaseJson.forEach(e => {
+    designs.push(e);
+})
+await firstLoad();
 }
 
-let design1 = new Design(`001`,`"./assets/Img/Flamingo.jpg"`,`Flamingo`,`love flamingos`,`Traditional`,`redbubble.com`,`society6.com`,``);
-let design2 = new Design(`002`,`"./assets/Img/Flamingo.jpg"`,`Bird`,`love Birds`,`Digital`,`redbubble.com`,``,`displate.com`);
-let design3 = new Design(`003`,`"./assets/Img/Flamingo.jpg"`,`Dragon`,`love Dragons`,`Digital`,``,`society6.com`,``);
-let design4 = new Design(`004`,`"./assets/Img/Flamingo.jpg"`,`Nigth photo chia`,`love night Photography`,`Photography`,``,``,`displate.com`);
-let design5 = new Design(`005`,`"./assets/Img/Flamingo.jpg"`,`Flamingo2`,`love flamingos`,`Traditional`,`redbubble.com`,`society6.com`,``);
-let design6 = new Design(`006`,`"./assets/Img/Flamingo.jpg"`,`Bird2`,`love Birds`,`Digital`,`redbubble.com`,``,`displate.com`);
-let design7 = new Design(`007`,`"./assets/Img/Flamingo.jpg"`,`Dragon2`,`love Dragons`,`Digital`,``,`society6.com`,``);
-let design8 = new Design(`008`,`"./assets/Img/Flamingo.jpg"`,`Nigth photo chia2`,`love night Photography`,`Photography`,``,``,`displate.com`);
+bringInfo()
 
-designs.push(design1,design2,design3,design4,design5,design6,design7,design8);
 //funciones
 function loadCards(fil) {
-    fil.forEach(e => {
-        e.deployDesigns();
-        e.deployShops();
-    });
-    loadAddButtons(fil);
-    saveMem(fil);
-}
-
-function loadCardsMemory(fil) {
     fil.forEach(e => {
         deployDesigns(e);
         deployShops(e);
@@ -104,15 +50,11 @@ function rebuildGroupCards(){
         groupCards.innerHTML += cardHolder;  
 }
 
-function filtrarGeneral(elemento,item){
-    let eFiltrado = designs.filter(e => e[item] == `${elemento}`);
-    return eFiltrado;
-}
-
-function filtrarGeneralShop(elemento,item){
-    let eFiltrado = designs.filter(e => e[item] !== `${elemento}`);
-    return eFiltrado;
-}
+async function filterGeneral(element,item){
+        let eFiltrado = await designs.filter(e => e[item] == `${element}`);
+        await console.log(eFiltrado);
+        return await eFiltrado;    
+    }
 //se pasa a class como metodo
 function deployShops(fil){
     let shop1Ava = checkShops(fil.shop1);
@@ -181,11 +123,11 @@ const addToList = (desId)=>{
     
 }
 
-function saveMem(arr){
-    console.log(arr);
-    localStorage.setItem("Design",JSON.stringify(arr));
+async function saveMem(arr){
+    await console.log(arr);
+    await localStorage.setItem("Design",JSON.stringify(arr));
     const testVuelta = JSON.parse(localStorage.getItem("Design"))
-    console.log(testVuelta);
+    await console.log(testVuelta);
 }
 
 function saveMemList(arr){
@@ -194,13 +136,13 @@ function saveMemList(arr){
     localStorage.setItem("designListCount",JSON.stringify(countDesigns));
 }
 
-function firstLoad(){
+async function firstLoad(){
     //revisar memoria ultima navegacion
     if(memoryBack !== null){
         console.log("estoy en recuerdo")
-        loadCardsMemory(memoryBack);
+        await loadCards(memoryBack);
     }else{
-        loadCards(designs);
+        await loadCards(designs);
         console.log("estoy en primera vez");
     }
     //revisar memoria ultima lista
@@ -223,7 +165,7 @@ let btnCheckList = document.getElementById(`listDesign`);
 let btnCheckListClear = document.getElementById(`listDesignClear`);
 
 //trabajar DOM
-filteringShop.onchange = () =>{
+filteringShop.onchange = async() =>{
     const selectedShop = filteringShop.value;
     switch (selectedShop) {
         case "0":
@@ -239,7 +181,8 @@ filteringShop.onchange = () =>{
             break;
         case "1":
             rebuildGroupCards();
-            loadCards(filteredShopsRed);
+            let filteredShopsRed = await filterGeneral("","shop1");
+            await loadCards(filteredShopsRed);
             Toastify({
                 text: "Shop1 Loaded",
                 className: "info",
@@ -250,6 +193,7 @@ filteringShop.onchange = () =>{
             break;
         case "2":
             rebuildGroupCards();
+            let filteredShopsSoc = await filterGeneral("","shop2");
             loadCards(filteredShopsSoc);
             Toastify({
                 text: "Shop2 Loaded",
@@ -261,6 +205,7 @@ filteringShop.onchange = () =>{
             break;
         case "3":
             rebuildGroupCards();
+            let filteredShopsDis = await filterGeneral("","shop3");
             loadCards(filteredShopsDis);
             Toastify({
                 text: "Shop3 Loaded",
@@ -277,7 +222,7 @@ filteringShop.onchange = () =>{
     
 }
 
-filteringStyle.onchange = () =>{
+filteringStyle.onchange = async() =>{
     const selectedStyle = filteringStyle.value;
     switch (selectedStyle) {
         case "0":
@@ -293,6 +238,7 @@ filteringStyle.onchange = () =>{
             break;
         case "1":
             rebuildGroupCards();
+            let filteredByStyleDigital = await filterGeneral("Digital","style");
             loadCards(filteredByStyleDigital);
             Toastify({
                 text: "digital loaded",
@@ -304,6 +250,7 @@ filteringStyle.onchange = () =>{
             break;
         case "2":
             rebuildGroupCards();
+            let filteredByStyleTraditional = await filterGeneral("Traditional","style");
             loadCards(filteredByStyleTraditional);
             Toastify({
                 text: "Traditional Loaded",
@@ -315,6 +262,7 @@ filteringStyle.onchange = () =>{
             break;
         case "3":
             rebuildGroupCards();
+            let filteredByStylePhoto = await filterGeneral("Photography","style");
             loadCards(filteredByStylePhoto);
             Toastify({
                 text: "Photography Loaded",
@@ -353,7 +301,7 @@ btnCheckList.onclick = () =>{
         })
     }else{
         rebuildGroupCards();
-        loadCardsMemory(likedList);
+        loadCards(likedList);
         Toastify({
             text: "List loaded",
             className: "info",
@@ -365,21 +313,8 @@ btnCheckList.onclick = () =>{
     
 }
 
-//filtros de array por shop
-let filteredShopsRed = filtrarGeneralShop("","shop1");
-let filteredShopsSoc = filtrarGeneralShop("","shop2");
-let filteredShopsDis = filtrarGeneralShop("","shop3");
-//filtros array por style
-let filteredByStyleDigital = filtrarGeneral("Digital","style");
-let filteredByStyleTraditional = filtrarGeneral("Traditional","style");
-let filteredByStylePhoto = filtrarGeneral("Photography","style");
-
 //funcion cargar TRABAJO EN LOCALSTORAGE
 let memoryBack =  JSON.parse(localStorage.getItem("Design"));
 let memoryListBack = JSON.parse(localStorage.getItem("designList"));
 let memoryListCountBack = JSON.parse(localStorage.getItem("designListCount"))
-console.log(memoryBack);
 
-//CARGAS DE INICIO
-
-firstLoad();
