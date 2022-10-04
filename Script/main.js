@@ -13,6 +13,8 @@ await firstLoad();
 
 bringInfo()
 
+
+
 //funciones
 function loadCards(fil) {
     fil.forEach(e => {
@@ -20,7 +22,7 @@ function loadCards(fil) {
         deployShops(e);
     });
     loadAddButtons(fil);
-    saveMem(fil);
+    memoryManage.saveNav(fil);
 }
 
 function addCounterNum(){
@@ -54,8 +56,8 @@ async function filterGeneral(element,item){
         let eFiltrado = await designs.filter(e => e[item] == `${element}`);
         await console.log(eFiltrado);
         return await eFiltrado;    
-    }
-//se pasa a class como metodo
+}
+
 function deployShops(fil){
     let shop1Ava = checkShops(fil.shop1);
     let shop2Ava = checkShops(fil.shop2);
@@ -68,7 +70,7 @@ function deployShops(fil){
     const shopList = document.getElementById(`shopList${fil.id}`);
     shopList.innerHTML += shops;
 }
-//se pasa a class como petodo
+
 function deployDesigns(fil){
     const card =`
     <div id="card" class="col">
@@ -111,7 +113,7 @@ const addToList = (desId)=>{
        likedList.push(findForList); 
        countDesigns++;
        addCounterNum();
-       saveMemList(likedList);
+       memoryManage.saveList(likedList);
        Toastify({
         text: `${findForList.title} Added to list`,
         className: "info",
@@ -123,17 +125,19 @@ const addToList = (desId)=>{
     
 }
 
-async function saveMem(arr){
+//Metodo manejo de memoria
+const memoryManage ={
+    async saveNav(arr){
     await console.log(arr);
     await localStorage.setItem("Design",JSON.stringify(arr));
     const testVuelta = JSON.parse(localStorage.getItem("Design"))
     await console.log(testVuelta);
-}
-
-function saveMemList(arr){
-    console.log(arr);
-    localStorage.setItem("designList",JSON.stringify(arr));
+},
+    async saveList(arr){
+    await console.log(arr);
+    await localStorage.setItem("designList",JSON.stringify(arr));
     localStorage.setItem("designListCount",JSON.stringify(countDesigns));
+}
 }
 
 async function firstLoad(){
