@@ -13,8 +13,6 @@ await firstLoad();
 
 bringInfo()
 
-
-
 //funciones
 function loadCards(fil) {
     fil.forEach(e => {
@@ -23,6 +21,44 @@ function loadCards(fil) {
     });
     loadAddButtons(fil);
     memoryManage.saveNav(fil);
+}
+
+function loadCardsModal(fil) {
+    fil.forEach(e => {
+        deployListModal(e);
+        deployShops(e);
+    })
+}
+
+function deployListModal(fil) {
+    console.log(fil);
+    const card =`
+    <div id="card" class="col">
+            <div class="card h-100">
+                <img src=${fil.photo} class="card-img-top designImage">
+                <div class="card-Body">
+                    <h5 class="card-title">${fil.title}</h5>
+                    <p class="card-text">${fil.text}</p>
+                    <p class="card-text">${fil.style}</p>
+                    <div id="shopList${fil.id}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    `
+    const groupCardsModal = document.getElementById (`shopResume`);
+    groupCardsModal.innerHTML += card;
+}
+
+function rebuildGroupCardsModal(){
+    const cardsRemove = document.getElementById("shopResume");
+    cardsRemove.remove()
+    const cardHolder =`
+    <div id="shopResume" class="row row-cols-1 row-cols-md-2 g-2">
+    </div>
+        `
+        const groupCards = document.getElementById (`modalGroup`);
+        groupCards.innerHTML += cardHolder;  
 }
 
 function addCounterNum(){
@@ -70,6 +106,7 @@ function deployShops(fil){
     const shopList = document.getElementById(`shopList${fil.id}`);
     shopList.innerHTML += shops;
 }
+
 
 function deployDesigns(fil){
     const card =`
@@ -167,8 +204,28 @@ let filteringShop = document.getElementById(`shopSelect`);
 let filteringStyle = document.getElementById(`styleSelect`);
 let btnCheckList = document.getElementById(`listDesign`);
 let btnCheckListClear = document.getElementById(`listDesignClear`);
+let triggerList = document.getElementById(`triggerList`);
 
 //trabajar DOM
+btnCheckList.onclick = async() => {
+    if(likedList == ""){
+        Swal.fire({
+            text:`Please add a design to your list`,
+            icon:`warning`
+        })
+    }else{
+        await rebuildGroupCardsModal();
+        await loadCardsModal(likedList);
+        Toastify({
+            text: "List loaded",
+            className: "info",
+            style: {
+              background: "linear-gradient(to right, #00b09b, #96c93d)",
+            }
+          }).showToast();
+    }
+}
+
 filteringShop.onchange = async() =>{
     const selectedShop = filteringShop.value;
     switch (selectedShop) {
@@ -297,25 +354,6 @@ btnCheckListClear.onclick = () =>{
       }).showToast();
 }
 
-btnCheckList.onclick = () =>{
-    if(likedList == ""){
-        Swal.fire({
-            text:`Please add a design to your list`,
-            icon:`warning`
-        })
-    }else{
-        rebuildGroupCards();
-        loadCards(likedList);
-        Toastify({
-            text: "List loaded",
-            className: "info",
-            style: {
-              background: "linear-gradient(to right, #00b09b, #96c93d)",
-            }
-          }).showToast();
-    }
-    
-}
 
 //funcion cargar TRABAJO EN LOCALSTORAGE
 let memoryBack =  JSON.parse(localStorage.getItem("Design"));
