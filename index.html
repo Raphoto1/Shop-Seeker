@@ -11,9 +11,8 @@
     <title>:::Rafael Martinez:::ShopSeeker:::</title>
 </head>
 <body>
-
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -29,9 +28,9 @@
       </div>
     </div>
   </div>
-</div>
+  </div>
     <!-- barar de busqueda -->
-    <div id="searchBar" class="searchBar p-3 sticky-md-top w-100">
+    <div id="searchBar" class="searchBar p-2 sticky-md-top w-100">
         <form class="row justify-content-around w-100" id="filters">
             <div class="col-4">
                 <select id="shopSelect" class="form-select shopSelect" aria-label="Default select example">
@@ -52,11 +51,15 @@
                 </select>
             </div>
             <div class="col-4">
-                <button type="button" id="listDesign" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Check List</button>
-                <button type="button" id="listDesignClear" class="btn btn-secondary" data-toggle="modal" data-target="#modalInfo">Clear list</button>
+              <button type="button" id="clearFilter" class="btn btn-secondary">Clear filter</button>
             </div>
         </form>
+        <div class="d-flex flex-row-reverse py-2">        
+          <button type="button" id="listDesign" class="btn btn-primary col-10 py-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Check List</button>
+          <button type="button" id="listDesignClear" class="btn btn-secondary col-10 py-2" data-toggle="modal" data-target="#modalInfo">Clear list</button>
+        </div>
     </div>
+    
     <!--  mostrar diseños -->
     <div id="designCards" class="container-fluid">
         <div id="groupCards" class="row row-cols-1 row-cols-md-4 g-4">

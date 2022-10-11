@@ -1,76 +1,77 @@
 //general Array deploy
 let designs = [];
 let likedList= [];
-
-async function bringInfo(){
-const infoBase = await fetch(`./Script/designs.json`)
-const infoBaseJson = await infoBase.json()
-await infoBaseJson.forEach(e => {
-    designs.push(e);
-})
-await firstLoad();
-}
-
+let countDesigns = 0;
+//Primera Carga
 bringInfo()
 
 //funciones
-function loadCards(fil) {
-    fil.forEach(e => {
-        deployDesigns(e);
-        deployShops(e);
-    });
-    loadAddButtons(fil);
-    memoryManage.saveNav(fil);
-}
-
-function loadCardsModal(fil) {
-    fil.forEach(e => {
-        deployListModal(e);
-        deployShops(e);
+async function bringInfo(){
+    const infoBase = await fetch(`./Script/designs.json`)
+    const infoBaseJson = await infoBase.json()
+    await infoBaseJson.forEach(e => {
+        designs.push(e);
     })
+    await firstLoad();
 }
 
-function deployListModal(fil) {
-    console.log(fil);
-    const card =`
-    <div id="card" class="col">
-            <div class="card h-100">
-                <img src=${fil.photo} class="card-img-top designImage">
-                <div class="card-Body">
-                    <h5 class="card-title">${fil.title}</h5>
-                    <p class="card-text">${fil.text}</p>
-                    <p class="card-text">${fil.style}</p>
-                    <div id="shopList${fil.id}">
-                    </div>
-                </div>
-            </div>
-        </div>
-    `
-    const groupCardsModal = document.getElementById (`shopResume`);
-    groupCardsModal.innerHTML += card;
+async function firstLoad(){
+    //revisar memoria ultima navegacion
+    if(memoryBack !== null){
+        console.log("estoy en recuerdo")
+        await load.cards(memoryBack);
+        memoryFilter = filteringShop.options[4].selected = `selected`;
+        memoryFilter = filteringStyle.options[4].selected = `selected`;
+        Toastify({
+            text: "Welcomeback!!",
+            className: "info",
+            style: {
+              background: "linear-gradient(to right, #00b09b, #96c93d)",
+            }
+          }).showToast();
+    }else{
+        await load.cards(designs);
+        Toastify({
+            text: "Welcome to my shops seeker",
+            className: "info",
+            style: {
+              background: "linear-gradient(to right, #00b09b, #96c93d)",
+            }
+          }).showToast();
+    }
+    //revisar memoria ultima lista
+    if(memoryListBack !== null){
+        console.log("recuerdo list");
+        likedList = memoryListBack;
+        countDesigns = memoryListCountBack;
+        addCounterNum()
+    }else{
+        console.log("lista vacia");
+    }
 }
 
 function rebuildGroupCardsModal(){
     const cardsRemove = document.getElementById("shopResume");
     cardsRemove.remove()
     const cardHolder =`
-    <div id="shopResume" class="row row-cols-1 row-cols-md-2 g-2">
-    </div>
+        <div id="shopResume" class="row row-cols-1 row-cols-md-2 g-2">
+        </div>
         `
-        const groupCards = document.getElementById (`modalGroup`);
-        groupCards.innerHTML += cardHolder;  
+    const groupCards = document.getElementById (`modalGroup`);
+    groupCards.innerHTML += cardHolder;  
 }
 
 function addCounterNum(){
     btnCheckList.innerHTML = `Check List (${countDesigns})`
 }
 
-function checkShops(shop){
+function checkShops(shop,icon){
     let link;
     if(shop !== ""){
         link =`
-        <a href="${shop}" class="btn">shop cargada ${shop}</a>
-        `
+            <a href="${shop}" class="btn"><img src="${icon}" class="iconList" alt="${shop}"></a>
+            `
+            console.log(`estamos en la shop ${shop}`);
     }else{
         link = ``;
     }
@@ -81,60 +82,11 @@ function rebuildGroupCards(){
     const cardsRemove = document.getElementById("groupCards");
     cardsRemove.remove()
     const cardHolder =`
-    <div id="groupCards" class="row row-cols-1 row-cols-md-4 g-4">
-    </div>
-        `
-        const groupCards = document.getElementById (`designCards`);
-        groupCards.innerHTML += cardHolder;  
-}
-
-async function filterGeneral(element,item){
-        let eFiltrado = await designs.filter(e => e[item] == `${element}`);
-        await console.log(eFiltrado);
-        return await eFiltrado;    
-}
-
-function deployShops(fil){
-    let shop1Ava = checkShops(fil.shop1);
-    let shop2Ava = checkShops(fil.shop2);
-    let shop3Ava = checkShops(fil.shop3);
-    const shops =`
-        ${shop1Ava}
-        ${shop2Ava}
-        ${shop3Ava}
-    `
-    const shopList = document.getElementById(`shopList${fil.id}`);
-    shopList.innerHTML += shops;
-}
-
-
-function deployDesigns(fil){
-    const card =`
-    <div id="card" class="col">
-            <div class="card h-100">
-                <img src=${fil.photo} class="card-img-top designImage">
-                <div class="card-Body">
-                    <h5 class="card-title">${fil.title}</h5>
-                    <p class="card-text">${fil.text}</p>
-                    <p class="card-text">${fil.style}</p>
-                    <button id="add${fil.id}" class="btn btn-primary">add to List</button>
-                    <div id="shopList${fil.id}">
-                    </div>
-                </div>
-            </div>
+        <div id="groupCards" class="row row-cols-1 row-cols-md-4 g-4">
         </div>
-    `
-    const groupCards = document.getElementById (`groupCards`);
-    groupCards.innerHTML += card;  
-}
-
-function loadAddButtons(arr){
-    arr.forEach((des)=>{
-    const btn = document.getElementById(`add${des.id}`)
-    btn.addEventListener(`click`,()=>{
-        addToList(des.id);
-    })
-})
+        `
+    const groupCards = document.getElementById (`designCards`);
+    groupCards.innerHTML += cardHolder;  
 }
 
 const addToList = (desId)=>{
@@ -162,7 +114,114 @@ const addToList = (desId)=>{
     
 }
 
-//Metodo manejo de memoria
+function removeLastSession(fil){
+    memoryFilterShop = filteringShop.length;
+    memoryFilterStyle = filteringStyle.length;
+    if (memoryFilterShop === 5 || memoryFilterStyle === 5) {
+        removeOptionShop = filteringShop.options[4];
+        removeOptionStyle = filteringStyle.options[4];
+        removeOptionShop.remove();
+        removeOptionStyle.remove();
+    }else{
+        console.log("Error");
+    } 
+}
+
+//Metodos
+const load = {
+    addButtons(arr){
+        arr.forEach((des)=>{
+        const btn = document.getElementById(`add${des.id}`)
+        btn.addEventListener(`click`,()=>{
+            addToList(des.id);
+        })
+    })
+    },
+    cardsModal(fil) {
+        fil.forEach(e => {
+            deploy.listModal(e);
+            deploy.shops(e);
+        })
+    },
+    cards(fil) {
+        fil.forEach(e => {
+            deploy.designs(e);
+            deploy.shops(e);
+        });
+        load.addButtons(fil);
+        memoryManage.saveNav(fil);
+    }
+}
+
+const deploy = {
+    designs(fil){
+        const card =`
+        <div id="card" class="col">
+                <div class="card h-100 text-center">
+                    <img src=${fil.photo} class="card-img-top designImage" alt="${fil.title}">
+                    <div class="card-Body">
+                        <h5 class="card-title pt-2">${fil.title}</h5>
+                        <p class="card-text">${fil.text}</p>
+                        <p class="card-text">${fil.style}</p>
+                        <button id="add${fil.id}" class="btn btn-primary">add to List</button>
+                        <div id="shopList${fil.id}" class="d-flex justify-content-center">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `
+        const groupCards = document.getElementById (`groupCards`);
+        groupCards.innerHTML += card;  
+    },
+    shops(fil){
+        let iconRed = "./assets/Icons/redbubble.png"
+        let iconSoc = "./assets/Icons/society6_icon.png"
+        let iconDis = "./assets/Icons/displate.png"
+        let shop1Ava = checkShops(fil.shop1,iconRed);
+        let shop2Ava = checkShops(fil.shop2,iconSoc);
+        let shop3Ava = checkShops(fil.shop3,iconDis);
+        const shops =`
+            ${shop1Ava}
+            ${shop2Ava}
+            ${shop3Ava}
+        `
+        const shopList = document.getElementById(`shopList${fil.id}`);
+        shopList.innerHTML += shops;
+    },
+    listModal(fil) {
+        console.log(fil);
+        const card =`
+        <div id="card" class="col">
+                <div class="card h-100">
+                    <img src=${fil.photo} class="card-img-top designImage">
+                    <div class="card-Body">
+                        <h5 class="card-title">${fil.title}</h5>
+                        <p class="card-text">${fil.text}</p>
+                        <p class="card-text">${fil.style}</p>
+                        <div id="shopList${fil.id}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `
+        const groupCardsModal = document.getElementById (`shopResume`);
+        groupCardsModal.innerHTML += card;
+    }
+}
+
+const filters = {
+    styles(element,item){
+        let eFiltrado = designs.filter(e => e[item] == `${element}`);
+        console.log(eFiltrado);
+        return eFiltrado;    
+    },
+    shops(element,item){
+        let eFiltrado = designs.filter(e => e[item] !== `${element}`);
+        console.log(eFiltrado);
+        return eFiltrado;    
+    }
+}
+
 const memoryManage ={
     async saveNav(arr){
     await console.log(arr);
@@ -177,52 +236,28 @@ const memoryManage ={
 }
 }
 
-async function firstLoad(){
-    //revisar memoria ultima navegacion
-    if(memoryBack !== null){
-        console.log("estoy en recuerdo")
-        await loadCards(memoryBack);
-        memoryFilter = filteringShop.options[4].selected = `selected`;
-        memoryFilter = filteringStyle.options[4].selected = `selected`;
-        console.log(memoryFilter);
-    }else{
-        await loadCards(designs);
-        console.log("estoy en primera vez");
-    }
-    //revisar memoria ultima lista
-    if(memoryListBack !== null){
-        console.log("recuerdo list");
-        likedList = memoryListBack;
-        countDesigns = memoryListCountBack;
-        addCounterNum()
-    }else{
-        console.log("lista vacia");
-    }
-}
-
-function removeLastSession(fil){
-    memoryFilterShop = filteringShop.length;
-    memoryFilterStyle = filteringStyle.length;
-    if (memoryFilterShop === 5 || memoryFilterStyle === 5) {
-        removeOptionShop = filteringShop.options[4];
-        removeOptionStyle = filteringStyle.options[4];
-        removeOptionShop.remove();
-        removeOptionStyle.remove();
-    }else{
-    }
-  
-    
-}
-
-let countDesigns = 0;
-
 //Traer Dom
 let filteringShop = document.getElementById(`shopSelect`);
 let filteringStyle = document.getElementById(`styleSelect`);
 let btnCheckList = document.getElementById(`listDesign`);
 let btnCheckListClear = document.getElementById(`listDesignClear`);
+let btnClearFilter = document.getElementById(`clearFilter`)
 
 //trabajar DOM
+btnClearFilter.onclick = () => {
+    rebuildGroupCards();
+    load.cards(designs);
+    memoryFilter = filteringShop.options[0].selected = `selected`;
+    memoryFilter = filteringStyle.options[0].selected = `selected`;
+    Toastify({
+        text: "All Shops Loaded",
+        className: "info",
+        style: {
+          background: "linear-gradient(to right, #00b09b, #96c93d)",
+        }
+      }).showToast();
+}
+
 btnCheckList.onclick = async() => {
     if(likedList == ""){
         Swal.fire({
@@ -231,7 +266,7 @@ btnCheckList.onclick = async() => {
         })
     }else{
         await rebuildGroupCardsModal();
-        await loadCardsModal(likedList);
+        await load.cardsModal(likedList);
         Toastify({
             text: "List loaded",
             className: "info",
@@ -248,7 +283,7 @@ filteringShop.onchange = async() =>{
         case "0":
             rebuildGroupCards();
             removeLastSession();
-            loadCards(designs);
+            load.cards(designs);
             Toastify({
                 text: "All Shops Loaded",
                 className: "info",
@@ -260,10 +295,12 @@ filteringShop.onchange = async() =>{
         case "1":
             rebuildGroupCards();
             removeLastSession();
-            let filteredShopsRed = await filterGeneral("","shop1");
-            await loadCards(filteredShopsRed);
+            memoryFilter = filteringStyle.options[0].selected = `selected`;
+            let filteredShopsRed = filters.shops("","shop1");
+            console.log(filteredShopsRed);
+            load.cards(filteredShopsRed);
             Toastify({
-                text: "Shop1 Loaded",
+                text: "Redbubble Shop Loaded",
                 className: "info",
                 style: {
                   background: "linear-gradient(to right, #00b09b, #96c93d)",
@@ -273,8 +310,10 @@ filteringShop.onchange = async() =>{
         case "2":
             rebuildGroupCards();
             removeLastSession(filteringShop);
-            let filteredShopsSoc = await filterGeneral("","shop2");
-            loadCards(filteredShopsSoc);
+            memoryFilter = filteringStyle.options[0].selected = `selected`;
+            let filteredShopsSoc = filters.shops("","shop2");
+            console.log(filteredShopsSoc);
+            load.cards(filteredShopsSoc);
             Toastify({
                 text: "Shop2 Loaded",
                 className: "info",
@@ -286,8 +325,9 @@ filteringShop.onchange = async() =>{
         case "3":
             rebuildGroupCards();
             removeLastSession();
-            let filteredShopsDis = await filterGeneral("","shop3");
-            loadCards(filteredShopsDis);
+            memoryFilter = filteringStyle.options[0].selected = `selected`;
+            let filteredShopsDis = filters.shops("","shop3");
+            load.cards(filteredShopsDis);
             Toastify({
                 text: "Shop3 Loaded",
                 className: "info",
@@ -309,7 +349,7 @@ filteringStyle.onchange = async() =>{
         case "0":
             rebuildGroupCards();
             removeLastSession();
-            loadCards(designs);
+            load.cards(designs);
             Toastify({
                 text: "All Styles Loaded",
                 className: "info",
@@ -321,8 +361,9 @@ filteringStyle.onchange = async() =>{
         case "1":
             rebuildGroupCards();
             removeLastSession();
-            let filteredByStyleDigital = await filterGeneral("Digital","style");
-            loadCards(filteredByStyleDigital);
+            filteringShop.options[0].selected = `selected`;
+            let filteredByStyleDigital = filters.styles("Digital","style");
+            load.cards(filteredByStyleDigital);
             Toastify({
                 text: "digital loaded",
                 className: "info",
@@ -334,8 +375,9 @@ filteringStyle.onchange = async() =>{
         case "2":
             rebuildGroupCards();
             removeLastSession();
-            let filteredByStyleTraditional = await filterGeneral("Traditional","style");
-            loadCards(filteredByStyleTraditional);
+            filteringShop.options[0].selected = `selected`;
+            let filteredByStyleTraditional = filters.styles("Traditional","style");
+            load.cards(filteredByStyleTraditional);
             Toastify({
                 text: "Traditional Loaded",
                 className: "info",
@@ -347,8 +389,9 @@ filteringStyle.onchange = async() =>{
         case "3":
             rebuildGroupCards();
             removeLastSession();
-            let filteredByStylePhoto = await filterGeneral("Photography","style");
-            loadCards(filteredByStylePhoto);
+            filteringShop.options[0].selected = `selected`;
+            let filteredByStylePhoto = filters.styles("Photography","style");
+            load.cards(filteredByStylePhoto);
             Toastify({
                 text: "Photography Loaded",
                 className: "info",
@@ -378,7 +421,7 @@ btnCheckListClear.onclick = () =>{
       }).showToast();
 }
 
-//funcion cargar TRABAJO EN LOCALSTORAGE
+//TRABAJO EN LOCALSTORAGE
 let memoryBack =  JSON.parse(localStorage.getItem("Design"));
 let memoryListBack = JSON.parse(localStorage.getItem("designList"));
 let memoryListCountBack = JSON.parse(localStorage.getItem("designListCount"))

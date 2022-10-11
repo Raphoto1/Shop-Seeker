@@ -13,4 +13,13 @@
   width: 100%;
   justify-content: center;
   align-items: center;
+}
+
+.iconList {
+  width: 25px;
+}
+
+.card-title {
+  text-align: center;
+  font-weight: bold;
 }/*# sourceMappingURL=main.css.map */
