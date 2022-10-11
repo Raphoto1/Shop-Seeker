@@ -182,6 +182,9 @@ async function firstLoad(){
     if(memoryBack !== null){
         console.log("estoy en recuerdo")
         await loadCards(memoryBack);
+        memoryFilter = filteringShop.options[4].selected = `selected`;
+        memoryFilter = filteringStyle.options[4].selected = `selected`;
+        console.log(memoryFilter);
     }else{
         await loadCards(designs);
         console.log("estoy en primera vez");
@@ -197,6 +200,20 @@ async function firstLoad(){
     }
 }
 
+function removeLastSession(fil){
+    memoryFilterShop = filteringShop.length;
+    memoryFilterStyle = filteringStyle.length;
+    if (memoryFilterShop === 5 || memoryFilterStyle === 5) {
+        removeOptionShop = filteringShop.options[4];
+        removeOptionStyle = filteringStyle.options[4];
+        removeOptionShop.remove();
+        removeOptionStyle.remove();
+    }else{
+    }
+  
+    
+}
+
 let countDesigns = 0;
 
 //Traer Dom
@@ -204,7 +221,6 @@ let filteringShop = document.getElementById(`shopSelect`);
 let filteringStyle = document.getElementById(`styleSelect`);
 let btnCheckList = document.getElementById(`listDesign`);
 let btnCheckListClear = document.getElementById(`listDesignClear`);
-let triggerList = document.getElementById(`triggerList`);
 
 //trabajar DOM
 btnCheckList.onclick = async() => {
@@ -231,6 +247,7 @@ filteringShop.onchange = async() =>{
     switch (selectedShop) {
         case "0":
             rebuildGroupCards();
+            removeLastSession();
             loadCards(designs);
             Toastify({
                 text: "All Shops Loaded",
@@ -242,6 +259,7 @@ filteringShop.onchange = async() =>{
             break;
         case "1":
             rebuildGroupCards();
+            removeLastSession();
             let filteredShopsRed = await filterGeneral("","shop1");
             await loadCards(filteredShopsRed);
             Toastify({
@@ -254,6 +272,7 @@ filteringShop.onchange = async() =>{
             break;
         case "2":
             rebuildGroupCards();
+            removeLastSession(filteringShop);
             let filteredShopsSoc = await filterGeneral("","shop2");
             loadCards(filteredShopsSoc);
             Toastify({
@@ -266,6 +285,7 @@ filteringShop.onchange = async() =>{
             break;
         case "3":
             rebuildGroupCards();
+            removeLastSession();
             let filteredShopsDis = await filterGeneral("","shop3");
             loadCards(filteredShopsDis);
             Toastify({
@@ -288,6 +308,7 @@ filteringStyle.onchange = async() =>{
     switch (selectedStyle) {
         case "0":
             rebuildGroupCards();
+            removeLastSession();
             loadCards(designs);
             Toastify({
                 text: "All Styles Loaded",
@@ -299,6 +320,7 @@ filteringStyle.onchange = async() =>{
             break;
         case "1":
             rebuildGroupCards();
+            removeLastSession();
             let filteredByStyleDigital = await filterGeneral("Digital","style");
             loadCards(filteredByStyleDigital);
             Toastify({
@@ -311,6 +333,7 @@ filteringStyle.onchange = async() =>{
             break;
         case "2":
             rebuildGroupCards();
+            removeLastSession();
             let filteredByStyleTraditional = await filterGeneral("Traditional","style");
             loadCards(filteredByStyleTraditional);
             Toastify({
@@ -323,6 +346,7 @@ filteringStyle.onchange = async() =>{
             break;
         case "3":
             rebuildGroupCards();
+            removeLastSession();
             let filteredByStylePhoto = await filterGeneral("Photography","style");
             loadCards(filteredByStylePhoto);
             Toastify({
@@ -353,7 +377,6 @@ btnCheckListClear.onclick = () =>{
         }
       }).showToast();
 }
-
 
 //funcion cargar TRABAJO EN LOCALSTORAGE
 let memoryBack =  JSON.parse(localStorage.getItem("Design"));
