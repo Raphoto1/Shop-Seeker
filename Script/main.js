@@ -50,7 +50,7 @@ async function firstLoad(){
     }
 }
 
-function rebuildGroupCardsModal(){
+function rebuildGroupCardsListModal(){
     const cardsRemove = document.getElementById("shopResume");
     cardsRemove.remove()
     const cardHolder =`
@@ -137,7 +137,7 @@ const load = {
         })
     })
     },
-    cardsModal(fil) {
+    cardsListModal(fil) {
         fil.forEach(e => {
             deploy.listModal(e);
             deploy.shops(e);
@@ -147,9 +147,15 @@ const load = {
         fil.forEach(e => {
             deploy.designs(e);
             deploy.shops(e);
+            deploy.imgModals(e);
         });
         load.addButtons(fil);
         memoryManage.saveNav(fil);
+    },
+    cardsModal(fil) {
+        fil.forEach(e => {
+            deploy.imgModals(e);
+        })
     }
 }
 
@@ -158,7 +164,7 @@ const deploy = {
         const card =`
         <div id="card" class="col">
                 <div class="card h-100 text-center">
-                    <img src=${fil.photo} class="card-img-top designImage" alt="${fil.title}">
+                    <img src=${fil.photo} class="card-img-top designImage" data-bs-toggle="modal" data-bs-target="#mod${fil.id}" alt="${fil.title}">
                     <div class="card-Body">
                         <h5 class="card-title pt-2">${fil.title}</h5>
                         <p class="card-text">${fil.text}</p>
@@ -188,6 +194,26 @@ const deploy = {
         const shopList = document.getElementById(`shopList${fil.id}`);
         shopList.innerHTML += shops;
     },
+    imgModals(fil){
+        const mod =`<div class="modal fade" id="mod${fil.id}" tabindex="-1" aria-labelledby="mod${fil.id}" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">${fil.title}</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src=${fil.photo} alt="${fil.title}" class="w-100">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>`
+        const modals = document.getElementById(`modalsGroup`);
+        modals.innerHTML += mod;
+    },
     listModal(fil) {
         console.log(fil);
         const card =`
@@ -204,8 +230,8 @@ const deploy = {
                 </div>
             </div>
         `
-        const groupCardsModal = document.getElementById (`shopResume`);
-        groupCardsModal.innerHTML += card;
+        const groupCardsListModal = document.getElementById (`shopResume`);
+        groupCardsListModal.innerHTML += card;
     }
 }
 
@@ -265,8 +291,8 @@ btnCheckList.onclick = async() => {
             icon:`warning`
         })
     }else{
-        await rebuildGroupCardsModal();
-        await load.cardsModal(likedList);
+        await rebuildGroupCardsListModal();
+        await load.cardsListModal(likedList);
         Toastify({
             text: "List loaded",
             className: "info",
