@@ -28,4 +28,5 @@
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  overflow: hidden;
 }/*# sourceMappingURL=main.css.map */

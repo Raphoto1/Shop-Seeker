@@ -113,8 +113,8 @@ const addToList = (desId)=>{
 }
 
 const remFromList = (desId) => {
-    const checkList = likedList.find((desi) => desi.id === desId);
-    const index = likedList.indexOf(checkList);
+    const checkListModal = likedList.find((desi) => desi.id === desId);
+    const index = likedList.indexOf(checkListModal);
     likedList.splice(index,1);
     countDesigns--;
     addCounterNum();
@@ -122,7 +122,7 @@ const remFromList = (desId) => {
     rebuildGroupCardsListModal();
     load.cardsListModal(likedList);
     Swal.fire({
-        text:`${checkList.title} Design removed`,
+        text:`${checkListModal.title} Design removed`,
         icon:`warning`
     })
 }
@@ -135,8 +135,6 @@ function removeLastSession(fil){
         removeOptionStyle = filteringStyle.options[4];
         removeOptionShop.remove();
         removeOptionStyle.remove();
-    }else{
-        console.log("Error");
     } 
 }
 
@@ -161,12 +159,12 @@ const load = {
     cardsListModal(fil) {
         fil.forEach(e => {
             deploy.listModal(e);
-            deploy.shops(e);
+            deploy.shopsModal(e);
         })
         load.remButtons(fil);
     },
-    cards(fil) {
-        fil.forEach(e => {
+    async cards(fil) {
+        await fil.forEach(e => {
             deploy.designs(e);
             deploy.shops(e);
             deploy.imgModals(e);
@@ -186,7 +184,7 @@ const deploy = {
         const card =`
         <div id="card" class="col">
                 <div class="card h-100 text-center">
-                    <img src=./assets/Img/${fil.id}.jpg class="card-img-top designImage object-fit" data-bs-toggle="modal" data-bs-target="#mod${fil.id}" alt="${fil.title}">
+                    <img src=./assets/Img/${fil.id}.jpg class="card-img-top designImage" data-bs-toggle="modal" data-bs-target="#mod${fil.id}" alt="${fil.title}">
                     <div class="card-Body">
                         <h5 class="card-title pt-2">${fil.title}</h5>
                         <p class="card-text">${fil.text}</p>
@@ -201,19 +199,34 @@ const deploy = {
         const groupCards = document.getElementById (`groupCards`);
         groupCards.innerHTML += card;  
     },
-    shops(fil){
+    async shops(fil){
         let iconRed = "./assets/Icons/redbubble.png"
         let iconSoc = "./assets/Icons/society6_icon.png"
         let iconDis = "./assets/Icons/displate.png"
-        let shop1Ava = checkShops(fil.shop1,iconRed);
-        let shop2Ava = checkShops(fil.shop2,iconSoc);
-        let shop3Ava = checkShops(fil.shop3,iconDis);
+        let shop1Ava = await checkShops(fil.shop1,iconRed);
+        let shop2Ava = await checkShops(fil.shop2,iconSoc);
+        let shop3Ava = await checkShops(fil.shop3,iconDis);
         const shops =`
             ${shop1Ava}
             ${shop2Ava}
             ${shop3Ava}
         `
         const shopList = document.getElementById(`shopList${fil.id}`);
+        shopList.innerHTML += shops;
+    },
+    async shopsModal(fil){
+        let iconRed = "./assets/Icons/redbubble.png"
+        let iconSoc = "./assets/Icons/society6_icon.png"
+        let iconDis = "./assets/Icons/displate.png"
+        let shop1Ava = await checkShops(fil.shop1,iconRed);
+        let shop2Ava = await checkShops(fil.shop2,iconSoc);
+        let shop3Ava = await checkShops(fil.shop3,iconDis);
+        const shops =`
+            ${shop1Ava}
+            ${shop2Ava}
+            ${shop3Ava}
+        `
+        const shopList = document.getElementById(`shopListModal${fil.id}`);
         shopList.innerHTML += shops;
     },
     imgModals(fil){
@@ -246,7 +259,7 @@ const deploy = {
                         <h5 class="card-title">${fil.title}</h5>
                         <p class="card-text">${fil.text}</p>
                         <p class="card-text">${fil.style}</p>
-                        <div id="shopList${fil.id}">
+                        <div id="shopListModal${fil.id}">
                         </div>
                         <button id="rem${fil.id}" class="btn btn-warning">remove from List</button>
                     </div>
@@ -290,9 +303,9 @@ let btnCheckListClear = document.getElementById(`listDesignClear`);
 let btnClearFilter = document.getElementById(`clearFilter`)
 
 //trabajar DOM
-btnClearFilter.onclick = () => {
-    rebuildGroupCards();
-    load.cards(designs);
+btnClearFilter.onclick = async () => {
+    await rebuildGroupCards();
+    await load.cards(designs);
     memoryFilter = filteringShop.options[0].selected = `selected`;
     memoryFilter = filteringStyle.options[0].selected = `selected`;
     Toastify({
@@ -457,6 +470,7 @@ btnCheckListClear.onclick = () =>{
     likedList = [];
     countDesigns = 0
     addCounterNum();
+    rebuildGroupCardsListModal()
     localStorage.removeItem("designList");
     localStorage.removeItem("designListCount");
     Toastify({
