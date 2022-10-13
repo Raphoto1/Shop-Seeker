@@ -25,6 +25,8 @@ async function firstLoad(){
         Toastify({
             text: "Welcomeback!!",
             className: "info",
+            position:"center",
+            gravity:"bottom",
             style: {
               background: "linear-gradient(to right, #00b09b, #96c93d)",
             }
@@ -34,6 +36,8 @@ async function firstLoad(){
         Toastify({
             text: "Welcome to my shops seeker",
             className: "info",
+            position:"center",
+            gravity:"bottom",
             style: {
               background: "linear-gradient(to right, #00b09b, #96c93d)",
             }
@@ -105,6 +109,8 @@ const addToList = (desId)=>{
        Toastify({
         text: `${findForList.title} Added to list`,
         className: "info",
+        position:"center",
+        gravity:"bottom",
         style: {
           background: "linear-gradient(to right, #00b09b, #96c93d)",
         }
@@ -311,8 +317,10 @@ btnClearFilter.onclick = async () => {
     Toastify({
         text: "All Shops Loaded",
         className: "info",
+        position:"center",
+        gravity:"bottom",
         style: {
-          background: "linear-gradient(to right, #00b09b, #96c93d)",
+          background: "linear-gradient(to right, #00b09b, #96c93d)"
         }
       }).showToast();
 }
@@ -322,7 +330,6 @@ btnCheckList.onclick = async() => {
         Swal.fire({
             text:`Please add a design to your list`,
             icon:`warning`
-
         })
     }else{
         await rebuildGroupCardsListModal();
@@ -330,6 +337,8 @@ btnCheckList.onclick = async() => {
         Toastify({
             text: "List loaded",
             className: "info",
+            position:"center",
+            gravity:"bottom",
             style: {
               background: "linear-gradient(to right, #00b09b, #96c93d)",
             }
@@ -347,6 +356,8 @@ filteringShop.onchange = async() =>{
             Toastify({
                 text: "All Shops Loaded",
                 className: "info",
+                position:"center",
+                gravity:"bottom",
                 style: {
                   background: "linear-gradient(to right, #00b09b, #96c93d)",
                 }
@@ -362,6 +373,8 @@ filteringShop.onchange = async() =>{
             Toastify({
                 text: "Redbubble Shop Loaded",
                 className: "info",
+                position:"center",
+                gravity:"bottom",
                 style: {
                   background: "linear-gradient(to right, #00b09b, #96c93d)",
                 }
@@ -377,6 +390,8 @@ filteringShop.onchange = async() =>{
             Toastify({
                 text: "Shop2 Loaded",
                 className: "info",
+                position:"center",
+                gravity:"bottom",
                 style: {
                   background: "linear-gradient(to right, #00b09b, #96c93d)",
                 }
@@ -391,6 +406,8 @@ filteringShop.onchange = async() =>{
             Toastify({
                 text: "Shop3 Loaded",
                 className: "info",
+                position:"center",
+                gravity:"bottom",
                 style: {
                   background: "linear-gradient(to right, #00b09b, #96c93d)",
                 }
@@ -413,6 +430,8 @@ filteringStyle.onchange = async() =>{
             Toastify({
                 text: "All Styles Loaded",
                 className: "info",
+                position:"center",
+                gravity:"bottom",
                 style: {
                   background: "linear-gradient(to right, #00b09b, #96c93d)",
                 }
@@ -427,6 +446,8 @@ filteringStyle.onchange = async() =>{
             Toastify({
                 text: "digital loaded",
                 className: "info",
+                position:"center",
+                gravity:"bottom",
                 style: {
                   background: "linear-gradient(to right, #00b09b, #96c93d)",
                 }
@@ -441,6 +462,8 @@ filteringStyle.onchange = async() =>{
             Toastify({
                 text: "Traditional Loaded",
                 className: "info",
+                position:"center",
+                gravity:"bottom",
                 style: {
                   background: "linear-gradient(to right, #00b09b, #96c93d)",
                 }
@@ -455,6 +478,8 @@ filteringStyle.onchange = async() =>{
             Toastify({
                 text: "Photography Loaded",
                 className: "info",
+                position:"center",
+                gravity:"bottom",
                 style: {
                   background: "linear-gradient(to right, #00b09b, #96c93d)",
                 }
@@ -476,6 +501,8 @@ btnCheckListClear.onclick = () =>{
     Toastify({
         text: "List Cleared",
         className: "info",
+        position:"center",
+        gravity:"bottom",
         style: {
           background: "linear-gradient(to right, #00b09b, #96c93d)",
         }
