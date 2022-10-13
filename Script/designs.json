@@ -1,10 +1,572 @@
 [
-    {"id":"011","photo":"\"./assets/Img/Flamingo.jpg\"","title":"Flamingo","text":"love flamingos","style":"Traditional","shop1":"https://www.redbubble.com/es/shop/ap/33278103?asc=u","shop2":"https://society6.com/product/flamingo-cqw_print","shop3":"https://displate.com//displate/1622080?art=5c9d663484046"},
-    {"id":"002","photo":"\"./assets/Img/work-44215676-primary-u-bag-tote.jpg\"","title":"Blue Flower","text":"love sketching Flowers","style":"Traditional","shop1":"https://www.redbubble.com/es/shop/ap/44215676?asc=u","shop2":"https://society6.com/product/blue-flower-sketch_print","shop3":"https://displate.com//displate/1769006?art=5c9d663484046"},
-    {"id":"003","photo":"\"./assets/Img/work-44713626-primary-u-print-board-gallery.jpg\"","title":"Cactus Sketch","text":"love sketching","style":"Traditional","shop1":"https://www.redbubble.com/es/shop/ap/44713626?asc=u","shop2":"https://society6.com/product/cactus-sketch2609163_print","shop3":"https://displate.com//displate/1821170?art=5c9d663484046"},
-    {"id":"005","photo":"\"./assets/Img/work-37680146-primary-u-pillow-floor.jpg\"","title":"Chiva 1","text":"Typical Colombian style","style":"Digital","shop1":"https://www.redbubble.com/es/shop/ap/37680146?asc=u","shop2":"https://society6.com/product/chiva-1_print","shop3":""},
-    {"id":"010","photo":"\"./assets/Img/work-33278445-default-u-print-board-gallery.jpg\"","title":"Fish","text":"Water color and markers","style":"Traditional","shop1":"https://www.redbubble.com/es/shop/ap/33278445?asc=u","shop2":"https://society6.com/product/fish-0vm_print","shop3":""},
-    {"id":"048","photo":"\"./assets/Img/work-55573797-lámina-metálica.jpg\"","title":"Notice the message","text":"love Birds","style":"Digital","shop1":"https://www.redbubble.com/es/shop/ap/55573797?asc=u","shop2":"https://society6.com/product/notice-the-message3348244_print","shop3":"https://displate.com//displate/3601891?art=5c9d663484046"},
-    {"id":"045","photo":"\"./assets/Img/work-58154695-delantal.jpg\"","title":"Make it real Dino","text":"love Dragons","style":"Digital","shop1":"https://www.redbubble.com/es/shop/ap/58154695?asc=u","shop2":"https://society6.com/product/make-it-real3386947_print","shop3":""},
-    {"id":"030","photo":"\"./assets/Img/work-36431178-primary-u-print-metal.jpg\"","title":"Photo Flower 1","text":"love nature Photography","style":"Photography","shop1":"https://www.redbubble.com/es/shop/ap/36431178?asc=u","shop2":"https://society6.com/product/flower-3896016_print","shop3":""}
+  {
+    "id": 1,
+    "photo": "\"./assets/Img/FlorAzul.jpg\"",
+    "title": "Blue Flower Sketch",
+    "text": "Love to sketch",
+    "style": "Traditional",
+    "shop1": "https://www.redbubble.com/es/shop/ap/44215676?asc=u",
+    "shop2": "https://society6.com/product/blue-flower-sketch_print",
+    "shop3": "https://displate.com//displate/1769006?art=5c9d663484046"
+  },
+  {
+    "id": 2,
+    "photo": "\"./assets/Img/CactusSketch.jpg\"",
+    "title": "Cactus Sketch",
+    "text": "Love to sketch",
+    "style": "Traditional",
+    "shop1": "https://www.redbubble.com/es/shop/ap/44713626?asc=u",
+    "shop2": "https://society6.com/product/cactus-sketch2609163_print",
+    "shop3": "https://displate.com//displate/1821170?art=5c9d663484046"
+  },
+  {
+    "id": 3,
+    "photo": "\"./assets/Img/ChickenNugget.jpg\"",
+    "title": "Chicken Nuguet",
+    "text": "Weird things comes with food",
+    "style": "Digital",
+    "shop1": "https://www.redbubble.com/es/shop/ap/39029341?asc=u",
+    "shop2": "https://society6.com/product/chicken-nugget2094064_print",
+    "shop3": ""
+  },
+  {
+    "id": 4,
+    "photo": "\"./assets/Img/Chiva1.jpg\"",
+    "title": "Chiva 1",
+    "text": "Typical Colombian Style",
+    "style": "Digital",
+    "shop1": "https://www.redbubble.com/es/shop/ap/37680146?asc=u",
+    "shop2": "https://society6.com/product/chiva-1_print",
+    "shop3": ""
+  },
+  {
+    "id": 5,
+    "photo": "\"./assets/Img/ChivaPapillon.jpg\"",
+    "title": "Chiva Papillon",
+    "text": "Typical Colombian Style",
+    "style": "Digital",
+    "shop1": "https://www.redbubble.com/es/shop/ap/37791536?asc=u",
+    "shop2": "https://society6.com/product/chiva-butterfly_print",
+    "shop3": ""
+  },
+  {
+    "id": 6,
+    "photo": "\"./assets/Img/EcoMap.jpg\"",
+    "title": "Echo Map",
+    "text": "Echoes from the history ares reflected on maps",
+    "style": "Digital",
+    "shop1": "https://www.redbubble.com/es/shop/ap/41927627?asc=u",
+    "shop2": "https://society6.com/product/echo-map-latinoamerica_print",
+    "shop3": "https://displate.com//displate/1388709?art=5c9d663484046"
+  },
+  {
+    "id": 7,
+    "photo": "\"./assets/Img/ElCoco.jpg\"",
+    "title": "El Coco",
+    "text": "Traditional stories ",
+    "style": "Digital",
+    "shop1": "https://www.redbubble.com/es/shop/ap/39471743?asc=u",
+    "shop2": "",
+    "shop3": ""
+  },
+  {
+    "id": 8,
+    "photo": "\"./assets/Img/Elefante.jpg\"",
+    "title": "Elephant",
+    "text": "Great animals for great ideas",
+    "style": "Traditional",
+    "shop1": "https://www.redbubble.com/es/shop/ap/43470538?asc=u",
+    "shop2": "https://society6.com/product/elephant2521959_print",
+    "shop3": ""
+  },
+  {
+    "id": 9,
+    "photo": "\"./assets/Img/Fish.jpg\"",
+    "title": "Fish",
+    "text": "Great animals for great ideas",
+    "style": "Traditional",
+    "shop1": "https://www.redbubble.com/es/shop/ap/33278445?asc=u",
+    "shop2": "https://society6.com/product/fish-0vm_print",
+    "shop3": ""
+  },
+  {
+    "id": 10,
+    "photo": "\"./assets/Img/Flamingo.jpg\"",
+    "title": "Flamingo",
+    "text": "flamingo love",
+    "style": "Digital",
+    "shop1": "https://www.redbubble.com/es/shop/ap/33278103?asc=u",
+    "shop2": "https://society6.com/product/flamingo-cqw_print",
+    "shop3": "https://displate.com//displate/1622080?art=5c9d663484046"
+  },
+  {
+    "id": 11,
+    "photo": "\"./assets/Img/work-43873587-primary-u-case-iphone.jpg\"",
+    "title": "Yellow flower sketch",
+    "text": "Love to sketch",
+    "style": "Traditional",
+    "shop1": "https://www.redbubble.com/es/shop/ap/43873587?asc=u",
+    "shop2": "https://society6.com/product/yellow-flower2553552_print",
+    "shop3": "https://displate.com//displate/1733922?art=5c9d663484046"
+  },
+  {
+    "id": 12,
+    "photo": "\"./assets/Img/work-44080791-default-u-coasters.jpg\"",
+    "title": "Purpple flower sketch",
+    "text": "Love to sketch",
+    "style": "Traditional",
+    "shop1": "https://www.redbubble.com/es/shop/ap/44080791?asc=u",
+    "shop2": "https://society6.com/product/purpple-flower-sketch_print",
+    "shop3": "https://displate.com//displate/1757905?art=5c9d663484046"
+  },
+  {
+    "id": 13,
+    "photo": "\"./assets/Img/work-44407738-supplementary-u-case-wallet-iphone.jpg\"",
+    "title": "Pink Flower Sketch",
+    "text": "Love to sketch",
+    "style": "Traditional",
+    "shop1": "https://www.redbubble.com/es/shop/ap/44407738?asc=u",
+    "shop2": "https://society6.com/product/sketch-flower-pink-2_print",
+    "shop3": "https://displate.com//displate/1789114?art=5c9d663484046"
+  },
+  {
+    "id": 14,
+    "photo": "\"./assets/Img/work-43783422-primary-u-pillow-throw.jpg\"",
+    "title": "Cat",
+    "text": "Great animals for great ideas",
+    "style": "Traditional",
+    "shop1": "https://www.redbubble.com/es/shop/ap/43783422?asc=u",
+    "shop2": "https://society6.com/product/cat2548588_print",
+    "shop3": ""
+  },
+  {
+    "id": 15,
+    "photo": "\"./assets/Img/work-38170654-primary-u-sticker.jpg\"",
+    "title": "Chocolate Icecream",
+    "text": "Love Chocolate and Icecream",
+    "style": "Traditional",
+    "shop1": "https://www.redbubble.com/es/shop/ap/38170654?asc=u",
+    "shop2": "https://society6.com/product/ice-cream1995942_print",
+    "shop3": ""
+  },
+  {
+    "id": 16,
+    "photo": "\"./assets/Img/work-38225870-primary-u-pillow-throw.jpg\"",
+    "title": "Vainilla Icecream",
+    "text": "Love Icecream",
+    "style": "Traditional",
+    "shop1": "https://www.redbubble.com/es/shop/ap/38225870",
+    "shop2": "https://society6.com/product/vainilla-ice-cream_print",
+    "shop3": ""
+  },
+  {
+    "id": 17,
+    "photo": "\"./assets/Img/work-40752226-primary-u-cotton-tote.jpg\"",
+    "title": "Jaguar",
+    "text": "Typical Colombian Style",
+    "style": "Digital",
+    "shop1": "https://www.redbubble.com/es/shop/ap/40752226?asc=u",
+    "shop2": "https://society6.com/product/jaguar2302812_print",
+    "shop3": ""
+  },
+  {
+    "id": 18,
+    "photo": "\"./assets/Img/work-41996900-primary-u-print-poster.jpg\"",
+    "title": "Latinoamerica resiste",
+    "text": "Latinoamerica always fighting",
+    "style": "Digital",
+    "shop1": "https://www.redbubble.com/es/shop/ap/41996900?asc=u",
+    "shop2": "",
+    "shop3": "https://displate.com//displate/1394453?art=5c9d663484046"
+  },
+  {
+    "id": 19,
+    "photo": "\"./assets/Img/work-36355711-supplementary-u-print-frame.jpg\"",
+    "title": "Light House",
+    "text": "There's a light in the worst Storm",
+    "style": "Digital",
+    "shop1": "https://www.redbubble.com/es/shop/ap/36355711?asc=u",
+    "shop2": "https://society6.com/product/splash-lighthouse_print",
+    "shop3": ""
+  },
+  {
+    "id": 20,
+    "photo": "\"./assets/Img/work-39200279-primary-u-case-samsung.jpg\"",
+    "title": "Love Pattern",
+    "text": "Typical Colombian Style",
+    "style": "Traditional",
+    "shop1": "https://www.redbubble.com/es/shop/ap/39200279?asc=u",
+    "shop2": "https://society6.com/product/pattern-love2109739_print",
+    "shop3": ""
+  },
+  {
+    "id": 21,
+    "photo": "\"./assets/Img/work-38154503-supplementary-u-clock.jpg\"",
+    "title": "Margarita Blue",
+    "text": "Simple lines Makes great Spaces",
+    "style": "Digital",
+    "shop1": "https://www.redbubble.com/es/shop/ap/38154503?asc=u",
+    "shop2": "https://society6.com/product/daisy-flower1995955_print",
+    "shop3": ""
+  },
+  {
+    "id": 22,
+    "photo": "\"./assets/Img/work-44529824-primary-u-water-bottle.jpg\"",
+    "title": "Margarita Sketch",
+    "text": "Love to sketch",
+    "style": "Traditional",
+    "shop1": "https://www.redbubble.com/es/shop/ap/44529824?asc=u",
+    "shop2": "https://society6.com/product/margarita-sketch_print",
+    "shop3": "https://displate.com//displate/1801033?art=5c9d663484046"
+  },
+  {
+    "id": 23,
+    "photo": "\"./assets/Img/work-33278258-primary_square-u-bag-tote.jpg\"",
+    "title": "Max",
+    "text": "Great animals for great ideas",
+    "style": "Traditional",
+    "shop1": "https://www.redbubble.com/es/shop/ap/33278258?asc=u",
+    "shop2": "https://society6.com/product/max-1ci_print",
+    "shop3": ""
+  },
+  {
+    "id": 24,
+    "photo": "\"./assets/Img/work-38647203-supplementary-u-sticker.jpg\"",
+    "title": "Mountain",
+    "text": "Floating Iselands",
+    "style": "Digital",
+    "shop1": "https://www.redbubble.com/es/shop/ap/38647203?asc=u",
+    "shop2": "https://society6.com/product/floating-earth2060332_print",
+    "shop3": ""
+  },
+  {
+    "id": 25,
+    "photo": "\"./assets/Img/work-44892419-supplementary2-u-block-acrylic.jpg\"",
+    "title": "Orquidea sketch",
+    "text": "Love to sketch",
+    "style": "Traditional",
+    "shop1": "https://www.redbubble.com/es/shop/ap/44892419?asc=u",
+    "shop2": "https://society6.com/product/orchid-sketch2619670_print",
+    "shop3": ""
+  },
+  {
+    "id": 26,
+    "photo": "\"./assets/Img/work-43187519-primary-u-notebook-hardcover.jpg\"",
+    "title": "Guacamaya",
+    "text": "Great animals for great ideas",
+    "style": "Digital",
+    "shop1": "https://www.redbubble.com/es/shop/ap/43187519?asc=u",
+    "shop2": "https://society6.com/product/bird2507147_print",
+    "shop3": ""
+  },
+  {
+    "id": 27,
+    "photo": "\"./assets/Img/work-40737896-primary-u-case-ipad.jpg\"",
+    "title": "Golden Muisca Pattern",
+    "text": "Typical Colombian Style",
+    "style": "Digital",
+    "shop1": "https://www.redbubble.com/es/shop/ap/40737896?asc=u",
+    "shop2": "https://society6.com/product/gold-muisca-pattern_print",
+    "shop3": ""
+  },
+  {
+    "id": 28,
+    "photo": "\"./assets/Img/work-40099037-primary-u-pillow-floor.jpg\"",
+    "title": "Black Muisca Pattern",
+    "text": "Typical Colombian Style",
+    "style": "Digital",
+    "shop1": "https://www.redbubble.com/es/shop/ap/40099037?asc=u",
+    "shop2": "https://society6.com/product/muisca-pattern_print",
+    "shop3": ""
+  },
+  {
+    "id": 29,
+    "photo": "\"./assets/Img/work-36431178-primary-u-print-metal.jpg\"",
+    "title": "Photo Flower 1",
+    "text": "Flowers are Great Models",
+    "style": "Photography",
+    "shop1": "https://www.redbubble.com/es/shop/ap/36431178?asc=u",
+    "shop2": "https://society6.com/product/flower-3896016_print",
+    "shop3": ""
+  },
+  {
+    "id": 30,
+    "photo": "\"./assets/Img/work-41498001-supplementary-u-print-frame.jpg\"",
+    "title": "Pills Cowboy",
+    "text": "Living with depression is an adventure of pills",
+    "style": "Digital",
+    "shop1": "https://www.redbubble.com/es/shop/ap/41498001?asc=u",
+    "shop2": "https://society6.com/product/pills-cowboy_print",
+    "shop3": "https://displate.com//displate/1356330?art=5c9d663484046"
+  },
+  {
+    "id": 31,
+    "photo": "\"./assets/Img/work-44252414-primary-u-pillow-throw.jpg\"",
+    "title": "Pink Flower Sketch",
+    "text": "Love to sketch",
+    "style": "Traditional",
+    "shop1": "https://www.redbubble.com/es/shop/ap/44252414?asc=u",
+    "shop2": "https://society6.com/product/pink-sketch-flower_print",
+    "shop3": "https://displate.com//displate/1773317?art=5c9d663484046"
+  },
+  {
+    "id": 32,
+    "photo": "\"./assets/Img/work-33297362-primary_square-u-block-acrylic.jpg\"",
+    "title": "Octopus",
+    "text": "Great animals for great ideas",
+    "style": "Traditional",
+    "shop1": "https://www.redbubble.com/es/shop/ap/33297362?asc=u",
+    "shop2": "https://society6.com/product/ninetopus_print",
+    "shop3": ""
+  },
+  {
+    "id": 33,
+    "photo": "\"./assets/Img/work-36201257-primary-u-bag-tote.jpg\"",
+    "title": "Mice",
+    "text": "Great animals for great ideas",
+    "style": "Traditional",
+    "shop1": "https://www.redbubble.com/es/shop/ap/36201257?asc=u",
+    "shop2": "https://society6.com/product/mouse-ino_print",
+    "shop3": ""
+  },
+  {
+    "id": 34,
+    "photo": "\"./assets/Img/work-43974602-primary-u-pillow-floor.jpg\"",
+    "title": "Rose Sketch",
+    "text": "Love to sketch",
+    "style": "Traditional",
+    "shop1": "https://www.redbubble.com/es/shop/ap/43974602?asc=u",
+    "shop2": "https://society6.com/product/rose-sketch2558924_print",
+    "shop3": "https://displate.com//displate/1740850?art=5c9d663484046"
+  },
+  {
+    "id": 35,
+    "photo": "\"./assets/Img/work-44834524-default-u-bag-studiopouch.jpg\"",
+    "title": "Rose Pattern",
+    "text": "Love Flowers",
+    "style": "Traditional",
+    "shop1": "https://www.redbubble.com/es/shop/ap/44834524?asc=u",
+    "shop2": "",
+    "shop3": ""
+  },
+  {
+    "id": 36,
+    "photo": "\"./assets/Img/Flamingo.jpg\"",
+    "title": "Chiva Texture",
+    "text": "Typical Colombian Style",
+    "style": "Digital",
+    "shop1": "https://www.redbubble.com/es/shop/ap/38018380?asc=u",
+    "shop2": "https://society6.com/product/chiva-pattern_print",
+    "shop3": ""
+  },
+  {
+    "id": 37,
+    "photo": "\"./assets/Img/Flamingo.jpg\"",
+    "title": "Vainilla y Chocolate Pattern",
+    "text": "Love Icecream",
+    "style": "Traditional",
+    "shop1": "https://www.redbubble.com/es/shop/ap/41384860?asc=u",
+    "shop2": "https://society6.com/product/icecream-pattern2329844_print",
+    "shop3": ""
+  },
+  {
+    "id": 38,
+    "photo": "\"./assets/Img/Flamingo.jpg\"",
+    "title": "Vainilla y Chocolate",
+    "text": "Love Icecream",
+    "style": "Traditional",
+    "shop1": "https://www.redbubble.com/es/shop/ap/38226289?asc=u",
+    "shop2": "https://society6.com/product/vainilla-or-chocolate_print",
+    "shop3": ""
+  },
+  {
+    "id": 39,
+    "photo": "\"./assets/Img/Flamingo.jpg\"",
+    "title": "Vector Fox",
+    "text": "Great animals for great ideas",
+    "style": "Digital",
+    "shop1": "https://www.redbubble.com/es/shop/ap/39218996?asc=u",
+    "shop2": "https://society6.com/product/fox353468_print",
+    "shop3": ""
+  },
+  {
+    "id": 40,
+    "photo": "\"./assets/Img/Flamingo.jpg\"",
+    "title": "Unicornio",
+    "text": "flamingo love",
+    "style": "Digital",
+    "shop1": "https://www.redbubble.com/es/shop/ap/57521334?asc=u",
+    "shop2": "https://society6.com/product/unicorn-with-hoodie_print",
+    "shop3": ""
+  },
+  {
+    "id": 41,
+    "photo": "\"./assets/Img/Flamingo.jpg\"",
+    "title": "Transformation",
+    "text": "flamingo love",
+    "style": "Digital",
+    "shop1": "https://www.redbubble.com/es/shop/ap/54892390?asc=u",
+    "shop2": "https://society6.com/product/transformation3353190_print",
+    "shop3": "https://displate.com/displate/3471895"
+  },
+  {
+    "id": 42,
+    "photo": "\"./assets/Img/Flamingo.jpg\"",
+    "title": "Taco Time",
+    "text": "flamingo love",
+    "style": "Digital",
+    "shop1": "https://www.redbubble.com/es/shop/ap/48772536?asc=u",
+    "shop2": "https://society6.com/product/taco-time2905170_print",
+    "shop3": "https://displate.com//displate/2549782?art=5c9d663484046"
+  },
+  {
+    "id": 43,
+    "photo": "\"./assets/Img/Flamingo.jpg\"",
+    "title": "Pattern Avocado",
+    "text": "flamingo love",
+    "style": "Digital",
+    "shop1": "https://www.redbubble.com/es/shop/ap/49048340?asc=u",
+    "shop2": "",
+    "shop3": ""
+  },
+  {
+    "id": 44,
+    "photo": "\"./assets/Img/Flamingo.jpg\"",
+    "title": "Make it real Dino",
+    "text": "flamingo love",
+    "style": "Digital",
+    "shop1": "https://www.redbubble.com/es/shop/ap/58154695?asc=u",
+    "shop2": "https://society6.com/product/make-it-real3386947_print",
+    "shop3": ""
+  },
+  {
+    "id": 45,
+    "photo": "\"./assets/Img/Flamingo.jpg\"",
+    "title": "Patron Aji",
+    "text": "flamingo love",
+    "style": "Digital",
+    "shop1": "https://www.redbubble.com/es/shop/ap/49192557?asc=u",
+    "shop2": "",
+    "shop3": ""
+  },
+  {
+    "id": 46,
+    "photo": "\"./assets/Img/Flamingo.jpg\"",
+    "title": "Octopus Mind",
+    "text": "flamingo love",
+    "style": "Digital",
+    "shop1": "https://www.redbubble.com/es/shop/ap/56400235?asc=u",
+    "shop2": "https://society6.com/product/octopus-mind_print",
+    "shop3": ""
+  },
+  {
+    "id": 47,
+    "photo": "\"./assets/Img/Flamingo.jpg\"",
+    "title": "Notice the message",
+    "text": "flamingo love",
+    "style": "Digital",
+    "shop1": "https://www.redbubble.com/es/shop/ap/55573797?asc=u",
+    "shop2": "https://society6.com/product/notice-the-message3348244_print",
+    "shop3": "https://displate.com//displate/3601891?art=5c9d663484046"
+  },
+  {
+    "id": 48,
+    "photo": "\"./assets/Img/Flamingo.jpg\"",
+    "title": "Make It Real",
+    "text": "flamingo love",
+    "style": "Digital",
+    "shop1": "https://www.redbubble.com/es/shop/ap/58789258?asc=u",
+    "shop2": "",
+    "shop3": ""
+  },
+  {
+    "id": 49,
+    "photo": "\"./assets/Img/Flamingo.jpg\"",
+    "title": "Huevo Gritando",
+    "text": "flamingo love",
+    "style": "Digital",
+    "shop1": "https://www.redbubble.com/es/shop/ap/57269998?asc=u",
+    "shop2": "https://society6.com/product/screaming-egg_print",
+    "shop3": ""
+  },
+  {
+    "id": 50,
+    "photo": "\"./assets/Img/Flamingo.jpg\"",
+    "title": "Fly Away",
+    "text": "flamingo love",
+    "style": "Digital",
+    "shop1": "https://www.redbubble.com/es/shop/ap/53228277?asc=u",
+    "shop2": "https://society6.com/product/fly-away3144120_print",
+    "shop3": "https://displate.com/displate/3311641?art=5c9d663484046"
+  },
+  {
+    "id": 51,
+    "photo": "\"./assets/Img/Flamingo.jpg\"",
+    "title": "Pills Explosion",
+    "text": "flamingo love",
+    "style": "Digital",
+    "shop1": "https://www.redbubble.com/es/shop/ap/48271682?asc=u",
+    "shop2": "",
+    "shop3": "https://displate.com//displate/2461626?art=5c9d663484046"
+  },
+  {
+    "id": 52,
+    "photo": "\"./assets/Img/Flamingo.jpg\"",
+    "title": "Bird Sketch",
+    "text": "flamingo love",
+    "style": "Digital",
+    "shop1": "https://www.redbubble.com/es/shop/ap/45980421?asc=u",
+    "shop2": "https://society6.com/product/bird-sketch2700902_print",
+    "shop3": "https://displate.com//displate/2065495?art=5c9d663484046"
+  },
+  {
+    "id": 53,
+    "photo": "\"./assets/Img/Flamingo.jpg\"",
+    "title": "Boceto Colibri",
+    "text": "flamingo love",
+    "style": "Digital",
+    "shop1": "https://www.redbubble.com/es/shop/ap/46318282?asc=u",
+    "shop2": "https://society6.com/product/hummingbird-sketch2729513_print",
+    "shop3": "https://displate.com//displate/2130336?art=5c9d663484046"
+  },
+  {
+    "id": 54,
+    "photo": "\"./assets/Img/Flamingo.jpg\"",
+    "title": "Cool Cactus",
+    "text": "flamingo love",
+    "style": "Digital",
+    "shop1": "https://www.redbubble.com/es/shop/ap/45527464?asc=u",
+    "shop2": "",
+    "shop3": ""
+  },
+  {
+    "id": 55,
+    "photo": "\"./assets/Img/Flamingo.jpg\"",
+    "title": "Doodle Box Color",
+    "text": "flamingo love",
+    "style": "Digital",
+    "shop1": "https://www.redbubble.com/es/shop/ap/46103998?asc=u",
+    "shop2": "https://society6.com/product/doodle-box-color_print",
+    "shop3": "https://displate.com//displate/2090444?art=5c9d663484046"
+  },
+  {
+    "id": 56,
+    "photo": "\"./assets/Img/Flamingo.jpg\"",
+    "title": "Doodle Box Duotone",
+    "text": "flamingo love",
+    "style": "Digital",
+    "shop1": "https://www.redbubble.com/es/shop/ap/46427176?asc=u",
+    "shop2": "https://society6.com/product/doodle-box-lines_print",
+    "shop3": ""
+  },
+  {
+    "id": 57,
+    "photo": "\"./assets/Img/Flamingo.jpg\"",
+    "title": "Doodle Box Lines",
+    "text": "flamingo love",
+    "style": "Digital",
+    "shop1": "https://www.redbubble.com/es/shop/ap/46129433?asc=u",
+    "shop2": "",
+    "shop3": "https://displate.com//displate/2111229?art=5c9d663484046"
+  }
 ]

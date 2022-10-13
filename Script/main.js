@@ -69,9 +69,8 @@ function checkShops(shop,icon){
     let link;
     if(shop !== ""){
         link =`
-            <a href="${shop}" class="btn"><img src="${icon}" class="iconList" alt="${shop}"></a>
+            <a href="${shop}" class="btn" target="_blank"><img src="${icon}" class="iconList" alt="${shop}"></a>
             `
-            console.log(`estamos en la shop ${shop}`);
     }else{
         link = ``;
     }
@@ -92,8 +91,8 @@ function rebuildGroupCards(){
 const addToList = (desId)=>{
     const findForList = designs.find((desi) => desi.id === desId);
     const checkList = likedList.find((desi) => desi.id === desId);
-    
-    if(findForList == checkList){
+
+    if(findForList && checkList){
         Swal.fire({
             text:`${findForList.title} has been already added to your list`,
             icon:`warning`
@@ -111,7 +110,21 @@ const addToList = (desId)=>{
         }
       }).showToast();
     }
-    
+}
+
+const remFromList = (desId) => {
+    const checkList = likedList.find((desi) => desi.id === desId);
+    const index = likedList.indexOf(checkList);
+    likedList.splice(index,1);
+    countDesigns--;
+    addCounterNum();
+    memoryManage.saveList(likedList);
+    rebuildGroupCardsListModal();
+    load.cardsListModal(likedList);
+    Swal.fire({
+        text:`${checkList.title} Design removed`,
+        icon:`warning`
+    })
 }
 
 function removeLastSession(fil){
@@ -137,11 +150,20 @@ const load = {
         })
     })
     },
+    remButtons(arr){
+        arr.forEach((des)=>{
+            const btn = document.getElementById(`rem${des.id}`)
+            btn.addEventListener(`click`,()=>{
+                remFromList(des.id);
+            })
+        })
+    },
     cardsListModal(fil) {
         fil.forEach(e => {
             deploy.listModal(e);
             deploy.shops(e);
         })
+        load.remButtons(fil);
     },
     cards(fil) {
         fil.forEach(e => {
@@ -164,7 +186,7 @@ const deploy = {
         const card =`
         <div id="card" class="col">
                 <div class="card h-100 text-center">
-                    <img src=${fil.photo} class="card-img-top designImage" data-bs-toggle="modal" data-bs-target="#mod${fil.id}" alt="${fil.title}">
+                    <img src=./assets/Img/${fil.id}.jpg class="card-img-top designImage object-fit" data-bs-toggle="modal" data-bs-target="#mod${fil.id}" alt="${fil.title}">
                     <div class="card-Body">
                         <h5 class="card-title pt-2">${fil.title}</h5>
                         <p class="card-text">${fil.text}</p>
@@ -203,7 +225,7 @@ const deploy = {
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <img src=${fil.photo} alt="${fil.title}" class="w-100">
+                <img src=./assets/Img/${fil.id}.jpg alt="${fil.title}" class="w-100">
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -219,13 +241,14 @@ const deploy = {
         const card =`
         <div id="card" class="col">
                 <div class="card h-100">
-                    <img src=${fil.photo} class="card-img-top designImage">
+                    <img src=./assets/Img/${fil.id}.jpg class="card-img-top designImage">
                     <div class="card-Body">
                         <h5 class="card-title">${fil.title}</h5>
                         <p class="card-text">${fil.text}</p>
                         <p class="card-text">${fil.style}</p>
                         <div id="shopList${fil.id}">
                         </div>
+                        <button id="rem${fil.id}" class="btn btn-warning">remove from List</button>
                     </div>
                 </div>
             </div>
@@ -250,13 +273,10 @@ const filters = {
 
 const memoryManage ={
     async saveNav(arr){
-    await console.log(arr);
     await localStorage.setItem("Design",JSON.stringify(arr));
     const testVuelta = JSON.parse(localStorage.getItem("Design"))
-    await console.log(testVuelta);
 },
     async saveList(arr){
-    await console.log(arr);
     await localStorage.setItem("designList",JSON.stringify(arr));
     localStorage.setItem("designListCount",JSON.stringify(countDesigns));
 }
@@ -289,6 +309,7 @@ btnCheckList.onclick = async() => {
         Swal.fire({
             text:`Please add a design to your list`,
             icon:`warning`
+
         })
     }else{
         await rebuildGroupCardsListModal();

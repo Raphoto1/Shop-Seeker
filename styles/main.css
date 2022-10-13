@@ -22,4 +22,10 @@
 .card-title {
   text-align: center;
   font-weight: bold;
+}
+
+.card-img-top {
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }/*# sourceMappingURL=main.css.map */
